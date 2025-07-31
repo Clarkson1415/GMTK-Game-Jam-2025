@@ -4,7 +4,9 @@ class_name DraggableObject
 
 @onready var area_2d: Area2D = $Area2D
 var bodyItsInside: StaticBody2D = null
-@export var rotationTime = 0.5
+@export var rotationTime = 0.2
+
+@export var thisColour: WireColours.WireColour
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,8 +15,12 @@ func _ready() -> void:
 	area_2d.body_entered.connect(onArea2DBodyEntered)
 	area_2d.body_exited.connect(onArea2DBodyExited)
 	snapToGrid()
+	modulate = WireColours.colourArray[thisColour]
 
 func onMouseEntered():
+	# if something is being dragged and its not this object
+	if Global.isDraggingGlobal:
+		return; 
 	print("mouse mouse enter")
 	scale = Vector2(1.05, 1.05)
 	underCursor = true
@@ -41,6 +47,7 @@ var initialPos: Vector2
 var underCursor: bool = false
 var dragging: bool = false
 var rPressed: bool = false
+
 func _input(event: InputEvent) -> void:
 	if !underCursor:
 		return;
@@ -49,12 +56,12 @@ func _input(event: InputEvent) -> void:
 		rotateOverTime(rotationTime)
 	if !Input.is_key_pressed(KEY_R):
 		rPressed = false;
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and !Global.isDraggingGlobal:
 		dragging = true
-		initialPos = global_position
-		global_position = get_global_mouse_position()
-	else:
+		Global.isDraggingGlobal = true
+	elif !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		dragging = false
+		Global.isDraggingGlobal = false
 		snapToGrid()
 
 var currentlyRotating: bool = false;
@@ -71,7 +78,12 @@ func onRotationComplete():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if dragging:
+		global_position = get_global_mouse_position()
+	#if dragging and !character_body_2d.is_on_ceiling and !character_body_2d.is_on_wall() and !character_body_2d.is_on_floor():
+		#global_position = get_global_mouse_position()
+
+@onready var character_body_2d: CharacterBody2D = $CharacterBody2D
 
 func snapToGrid():
 	global_position = (global_position / 16).round() * 16

@@ -15,6 +15,11 @@ run/main_scene="uid://hnltp074h12i"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://global.gd"
+WireColours="*res://WireColours.gd"
+
 [input]
 
 leftClick={

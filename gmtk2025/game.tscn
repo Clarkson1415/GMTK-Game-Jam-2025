@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bqkn5r5mgxw3b" path="res://my/wireV.png" id="6_ryrav"]
 [ext_resource type="Texture2D" uid="uid://bt3t4xs576ys4" path="res://newart/Topdown shadows-Sheet.png" id="7_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://cwkfafgly8mj3" path="res://newart/Wall tiles-Sheet.png" id="8_iotsf"]
-[ext_resource type="Texture2D" uid="uid://l3qmaqn3e2vg" path="res://my/wireCorner.png" id="9_hve3p"]
-[ext_resource type="Texture2D" uid="uid://dq3xckdievaq8" path="res://my/wireH.png" id="9_vef74"]
+[ext_resource type="Texture2D" uid="uid://xhk4rn5mtbpv" path="res://my/emptyTile.png" id="10_hve3p"]
+[ext_resource type="Texture2D" uid="uid://cirpv5j2dl16g" path="res://my/lighning.png" id="11_mfdv2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lc2xo"]
 texture = ExtResource("4_j5wjh")
@@ -65,9 +65,7 @@ texture = ExtResource("4_j5wjh")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_215e1"]
 texture = ExtResource("5_vef74")
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
@@ -81,22 +79,35 @@ texture = ExtResource("5_vef74")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7sc4i"]
 texture = ExtResource("6_hve3p")
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
 4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:0/0 = 0
 0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:1/0 = 0
 4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:1/0 = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:1/0 = 0
 0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:2/0 = 0
 4:2/0 = 0
 5:2/0 = 0
@@ -146,9 +157,13 @@ texture = ExtResource("7_mfdv2")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e8heu"]
 texture = ExtResource("8_iotsf")
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_rvswv"]
 physics_layer_0/collision_layer = 1
@@ -170,12 +185,13 @@ zoom = Vector2(4, 4)
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="tilemaps" groups=["dropable"]]
 z_index = -5
+position = Vector2(-8, 8)
 tile_map_data = PackedByteArray("AAD4//n/AgABAAEAAAD4//r/AgABAAEAAAD4//v/AgABAAEAAAD4//z/AgABAAEAAAD4//3/AgABAAEAAAD4//7/AgABAAEAAAD4////AgABAAEAAAD4/wAAAgABAAEAAAD4/wEAAgABAAEAAAD4/wIAAgABAAEAAAD4/wMAAgABAAEAAAD5//n/AgABAAEAAAD5//r/AgABAAEAAAD5//v/AgABAAEAAAD5//z/AgABAAEAAAD5//3/AgABAAEAAAD5//7/AgABAAEAAAD5////AgABAAEAAAD5/wAAAgABAAEAAAD5/wEAAgABAAEAAAD5/wIAAgABAAEAAAD5/wMAAgABAAEAAAD6//z/AgAEAAAAAAD6//3/AgACAAEAAAD6//7/AgACAAEAAAD6////AgACAAEAAAD6/wAAAgACAAEAAAD6/wEAAgACAAEAAAD6/wIAAgAEAAEAAAD6/wMAAgABAAEAAAD7//3/BAAAAAAAAAD7//7/AQABAAAAAAD7////AQABAAAAAAD7/wAAAQABAAAAAAD7/wEAAQABAAAAAAD7/wIAAgABAAAAAAD7/wMAAgABAAEAAAD8//3/BAAAAAAAAAD8//7/AQAAAAAAAAD8////AQABAAAAAAD8/wAAAQAAAAAAAAD8/wEAAQAAAAAAAAD8/wIAAgABAAAAAAD8/wMAAgABAAEAAAD9//3/BAAAAAAAAAD9//7/AQABAAAAAAD9////AQAAAAAAAAD9/wAAAQABAAAAAAD9/wEAAQAAAAAAAAD9/wIAAgABAAAAAAD9/wMAAgABAAEAAAD+//3/BAAAAAAAAAD+//7/AQABAAAAAAD+////AQABAAAAAAD+/wAAAQABAAAAAAD+/wEAAQAAAAAAAAD+/wIAAgABAAAAAAD+/wMAAgABAAEAAAD///3/BAAAAAAAAAD///7/AQAAAAAAAAD/////AQABAAAAAAD//wAAAQABAAAAAAD//wEAAQABAAAAAAD//wIAAgABAAAAAAD//wMAAgABAAEAAAAAAP3/BAAAAAAAAAAAAP7/AQAAAAAAAAAAAP//AQAAAAAAAAAAAAAAAQABAAAAAAAAAAEAAQABAAAAAAAAAAIAAgABAAAAAAAAAAMAAgABAAEAAAABAP3/BAAAAAAAAAABAP7/AQABAAAAAAABAP//AQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQABAAAAAAABAAIAAgABAAAAAAABAAMAAgABAAEAAAACAP3/BAAAAAAAAAACAP7/AQAAAAAAAAACAP//AQAAAAAAAAACAAAAAQAAAAAAAAACAAEAAQABAAAAAAACAAIAAgABAAAAAAACAAMAAgABAAEAAAADAP3/BAAAAAAAAAADAP7/AQABAAAAAAADAP//AQAAAAAAAAADAAAAAQAAAAAAAAADAAEAAQAAAAAAAAADAAIAAgABAAAAAAADAAMAAgABAAEAAAAEAP3/BAAAAAAAAAAEAP7/AQABAAAAAAAEAP//AQABAAAAAAAEAAAAAQABAAAAAAAEAAEAAQABAAAAAAAEAAIAAgABAAAAAAAEAAMAAgABAAEAAAAFAP3/AgAAAAEAAAAFAP7/AgAAAAEAAAAFAP//AgAAAAEAAAAFAAAAAgAAAAEAAAAFAAEAAgAAAAEAAAAFAAIAAgAFAAEAAAAFAAMAAgABAAEAAAAGAAMAAgABAAEAAAAJAPn/AgABAAEAAAAKAPn/AgABAAEAAAAKAPr/AgABAAEAAAAKAPv/AgABAAEAAAAKAPz/AgABAAEAAAAKAP3/AgABAAEAAAAKAP7/AgABAAEAAAAKAP//AgABAAEAAAAKAAAAAgABAAEAAAAKAAEAAgABAAEAAAAKAAIAAgABAAEAAAAKAAMAAgABAAEAAAD3//j/AgABAAEAAAD3//n/AgABAAEAAAD3//r/AgABAAEAAAD3//v/AgABAAEAAAD3//z/AgABAAEAAAD3//3/AgABAAEAAAD3//7/AgABAAEAAAD3////AgABAAEAAAD3/wAAAgABAAEAAAD3/wEAAgABAAEAAAD3/wIAAgABAAEAAAD3/wMAAgABAAEAAAD4//j/AgABAAEAAAD5//j/AgABAAEAAAD6//j/AgABAAEAAAD7//j/AgABAAEAAAD7//z/AgABAAIAAAD8//j/AgABAAEAAAD8//z/AgABAAIAAAD9//j/AgABAAEAAAD9//z/AgABAAIAAAD+//j/AgABAAEAAAD+//z/AgABAAIAAAD///j/AgABAAEAAAD///z/AgABAAIAAAAAAPj/AgABAAEAAAAAAPz/AgABAAIAAAABAPj/AgABAAEAAAABAPz/AgABAAIAAAACAPj/AgABAAEAAAACAPz/AgABAAIAAAADAPj/AgABAAEAAAADAPz/AgABAAIAAAAEAPj/AgABAAEAAAAEAPz/AgABAAIAAAAFAPj/AgABAAEAAAAFAPz/AgAFAAAAAAAGAPj/AgABAAEAAAAHAPj/AgABAAEAAAAHAAMAAgABAAEAAAAIAPj/AgABAAEAAAAIAAMAAgABAAEAAAAJAPj/AgABAAEAAAAJAPr/AgABAAEAAAAJAPv/AgABAAEAAAAJAPz/AgABAAEAAAAJAP3/AgABAAEAAAAJAP7/AgABAAEAAAAJAP//AgABAAEAAAAJAAAAAgABAAEAAAAJAAEAAgABAAEAAAAJAAIAAgABAAEAAAAJAAMAAgABAAEAAAAKAPj/AgABAAEAAAD6//r/AgABAAEAAAD7//r/AgABAAEAAAD8//r/AgABAAEAAAD9//r/AgABAAEAAAD+//r/AgABAAEAAAD///r/AgABAAEAAAAAAPr/AgABAAEAAAABAPr/AgABAAEAAAACAPr/AgABAAEAAAADAPr/AgABAAEAAAAEAPr/AgABAAEAAAAFAPr/AgABAAEAAAAGAPr/AgABAAEAAAAHAPr/AgABAAEAAAAIAPr/AgABAAEAAAAIAPv/AgABAAEAAAAHAPv/AgABAAEAAAAGAPv/AgABAAEAAAAFAPv/AgABAAEAAAAEAPv/AgABAAEAAAADAPv/AgABAAEAAAD///v/AgABAAEAAAD+//v/AgABAAEAAAD9//v/AgABAAEAAAD8//v/AgABAAEAAAD7//v/AgABAAEAAAD6//v/AgABAAEAAAD6//n/AgABAAEAAAD7//n/AgABAAEAAAD8//n/AgABAAEAAAD9//n/AgABAAEAAAD+//n/AgABAAEAAAD///n/AgABAAEAAAAAAPn/AgABAAEAAAABAPn/AgABAAEAAAACAPn/AgABAAEAAAADAPn/AgABAAEAAAAEAPn/AgABAAEAAAAFAPn/AgABAAEAAAAGAPn/AgABAAEAAAAHAPn/AgABAAEAAAAIAPn/AgABAAEAAAACAPv/AgABAAEAAAABAPv/AgABAAEAAAAAAPv/AgABAAEAAAAGAPz/AgABAAEAAAAGAP3/AgABAAEAAAAGAP7/AgABAAEAAAAGAP//AgABAAEAAAAGAAAAAgABAAEAAAAGAAEAAgABAAEAAAAGAAIAAgABAAEAAAAHAAEAAgABAAEAAAAHAAAAAgABAAEAAAAHAP//AgABAAEAAAAHAP7/AgABAAEAAAAHAP3/AgABAAEAAAAHAPz/AgABAAEAAAAIAP3/AgABAAEAAAAIAP7/AgABAAEAAAAIAP//AgABAAEAAAAIAAAAAgABAAEAAAAIAAEAAgABAAEAAAAHAAIAAgABAAEAAAAIAPz/AgABAAEAAAAIAAIAAgABAAEAAAAJAAQAAgABAAEAAAAIAAQAAgABAAEAAAAIAAUAAgABAAEAAAAHAAUAAgABAAEAAAAHAAQAAgABAAEAAAAGAAQAAgABAAEAAAAFAAQAAgABAAEAAAAEAAQAAgABAAEAAAADAAQAAgABAAEAAAACAAQAAgABAAEAAAABAAQAAgABAAEAAAAAAAQAAgABAAEAAAD//wQAAgABAAEAAAD+/wQAAgABAAEAAAD+/wUAAgABAAEAAAD9/wUAAgABAAEAAAD8/wUAAgABAAEAAAD7/wUAAgABAAEAAAD6/wUAAgABAAEAAAD5/wUAAgABAAEAAAD4/wUAAgABAAEAAAD3/wUAAgABAAEAAAD2/wUAAgABAAEAAAD2/wQAAgABAAEAAAD3/wQAAgABAAEAAAD4/wQAAgABAAEAAAD5/wQAAgABAAEAAAD6/wQAAgABAAEAAAD7/wQAAgABAAEAAAD8/wQAAgABAAEAAAD9/wQAAgABAAEAAAD//wUAAgABAAEAAAAAAAUAAgABAAEAAAABAAUAAgABAAEAAAACAAUAAgABAAEAAAADAAUAAgABAAEAAAAEAAUAAgABAAEAAAAFAAUAAgABAAEAAAAGAAUAAgABAAEAAAAJAAUAAgABAAEAAAAKAAUAAgABAAEAAAAKAAQAAgABAAEAAAD2/wMAAgABAAEAAAD2/wIAAgABAAEAAAD2/wEAAgABAAEAAAD2/wAAAgABAAEAAAD2////AgABAAEAAAD2//z/AgABAAEAAAD2//v/AgABAAEAAAD2//r/AgABAAEAAAD2//n/AgABAAEAAAD2//j/AgABAAEAAAD2//3/AgABAAEAAAD2//7/AgABAAEAAAA=")
 tile_set = SubResource("TileSet_rvswv")
 
 [node name="DraggablePowerCableV" type="Node2D" parent="."]
-modulate = Color(0.341517, 0.75136, 0.502743, 1)
-position = Vector2(40, -8)
+modulate = Color(0.919808, 6.95008e-05, 0.708071, 1)
+position = Vector2(40, -16)
 script = ExtResource("6_j5wjh")
 
 [node name="Area2D" type="Area2D" parent="DraggablePowerCableV"]
@@ -186,28 +202,11 @@ shape = SubResource("RectangleShape2D_vef74")
 [node name="Sprite2D" type="Sprite2D" parent="DraggablePowerCableV"]
 texture = ExtResource("6_ryrav")
 
-[node name="DraggablePowerCableH" type="Node2D" parent="."]
-modulate = Color(0.341517, 0.75136, 0.502743, 1)
-position = Vector2(-40, -8)
-script = ExtResource("6_j5wjh")
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, -16)
 
-[node name="Area2D" type="Area2D" parent="DraggablePowerCableH"]
+[node name="tile" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("10_hve3p")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DraggablePowerCableH/Area2D"]
-shape = SubResource("RectangleShape2D_vef74")
-
-[node name="Sprite2D" type="Sprite2D" parent="DraggablePowerCableH"]
-texture = ExtResource("9_vef74")
-
-[node name="DraggablePowerCableCorner" type="Node2D" parent="."]
-modulate = Color(0.341517, 0.75136, 0.502743, 1)
-position = Vector2(-16, 16)
-script = ExtResource("6_j5wjh")
-
-[node name="Area2D" type="Area2D" parent="DraggablePowerCableCorner"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DraggablePowerCableCorner/Area2D"]
-shape = SubResource("RectangleShape2D_vef74")
-
-[node name="Sprite2D" type="Sprite2D" parent="DraggablePowerCableCorner"]
-texture = ExtResource("9_hve3p")
+[node name="lightning" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("11_mfdv2")
