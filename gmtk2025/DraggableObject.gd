@@ -3,10 +3,16 @@ extends Node2D
 class_name DraggableObject
 
 @onready var area_2d: Area2D = $Area2D
+
 var bodyItsInside: StaticBody2D = null
 @export var rotationTime = 0.2
-
 @export var thisColour: WireColours.WireColour
+
+enum wireType {straight, corner, fourWay}
+@export var wireTypeItIs: wireType
+
+@export var inputArea: Area2D
+@export var outputArea: Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -78,12 +84,22 @@ func onRotationComplete():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if will_collide(get_global_mouse_position()):
+		dragging = false
+		Global.isDraggingGlobal = false
+		snapToGrid()
 	if dragging:
 		global_position = get_global_mouse_position()
-	#if dragging and !character_body_2d.is_on_ceiling and !character_body_2d.is_on_wall() and !character_body_2d.is_on_floor():
-		#global_position = get_global_mouse_position()
 
-@onready var character_body_2d: CharacterBody2D = $CharacterBody2D
+@export var areaCollisionShape: CollisionShape2D
+
+func will_collide(position: Vector2) -> bool:
+	var query = PhysicsShapeQueryParameters2D.new()
+	query.shape = areaCollisionShape.shape
+	query.transform = Transform2D(0, position)
+	query.collision_mask = 1  # set based on what layers you want to collide with
+	var result = get_world_2d().direct_space_state.intersect_shape(query)
+	return result.size() > 0
 
 func snapToGrid():
 	global_position = (global_position / 16).round() * 16
