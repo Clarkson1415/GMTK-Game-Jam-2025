@@ -1,0 +1,213 @@
+[gd_scene load_steps=25 format=3 uid="uid://5rfy1kin8dar"]
+
+[ext_resource type="Script" uid="uid://drqr27awcomuf" path="res://PowerSource.gd" id="1_rn4q2"]
+[ext_resource type="Texture2D" uid="uid://xhk4rn5mtbpv" path="res://my/emptyTile.png" id="2_8dtqc"]
+[ext_resource type="Script" uid="uid://b4ep0sk83u2yl" path="res://Cables/PowerController.gd" id="2_lgafc"]
+[ext_resource type="Texture2D" uid="uid://cu5lwrech36gq" path="res://my/outline.png" id="3_kb2kv"]
+[ext_resource type="Texture2D" uid="uid://cirpv5j2dl16g" path="res://my/lighning.png" id="4_ua15u"]
+[ext_resource type="Texture2D" uid="uid://ljk8vdm6ic" path="res://my/Blackpowerbutton.png" id="5_2rhne"]
+[ext_resource type="Texture2D" uid="uid://dxshsc14jmexr" path="res://my/powerButton.png" id="6_ov1w1"]
+[ext_resource type="Texture2D" uid="uid://c640te23utmfn" path="res://my/BLANK.png" id="7_ngcql"]
+[ext_resource type="Texture2D" uid="uid://c6t3wvrd21v7u" path="res://my/Attempt2Sparks-Sheet.png" id="8_fskgl"]
+[ext_resource type="Script" uid="uid://dmuvp6vp1wwbg" path="res://PowerableArea.gd" id="9_7gp7p"]
+
+[sub_resource type="Animation" id="Animation_iotsf"]
+resource_name = "OFF"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("symbol:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_2rhne")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SparksAnimatedSprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"OFF"]
+}
+
+[sub_resource type="Animation" id="Animation_mfdv2"]
+resource_name = "ON"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("symbol:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_ov1w1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SparksAnimatedSprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"ON"]
+}
+
+[sub_resource type="Animation" id="Animation_lc2xo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("symbol:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_ua15u")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SparksAnimatedSprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"ON"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lc2xo"]
+_data = {
+&"OFF": SubResource("Animation_iotsf"),
+&"ON": SubResource("Animation_mfdv2"),
+&"RESET": SubResource("Animation_lc2xo")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ep8k"]
+atlas = ExtResource("7_ngcql")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxywb"]
+atlas = ExtResource("8_fskgl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ka84"]
+atlas = ExtResource("8_fskgl")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwj2k"]
+atlas = ExtResource("8_fskgl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_votsg"]
+atlas = ExtResource("8_fskgl")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5d1de"]
+atlas = ExtResource("8_fskgl")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oep3m"]
+atlas = ExtResource("8_fskgl")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wl7tt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ep8k")
+}],
+"loop": true,
+"name": &"OFF",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxywb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ka84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwj2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_votsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5d1de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oep3m")
+}],
+"loop": true,
+"name": &"ON",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujyyc"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wl7tt"]
+size = Vector2(16, 16)
+
+[node name="powerTerminal" type="Node2D" node_paths=PackedStringArray("tileSprite", "animationPlayer", "outlineSprite", "powerController")]
+script = ExtResource("1_rn4q2")
+tileSprite = NodePath("tilecolour")
+animationPlayer = NodePath("AnimationPlayer")
+outlineSprite = NodePath("outline")
+powerController = NodePath("PowerController")
+
+[node name="PowerController" type="Node2D" parent="." node_paths=PackedStringArray("area1")]
+script = ExtResource("2_lgafc")
+area1 = [NodePath("../PowerTerminalArea")]
+metadata/_custom_type_script = "uid://b4ep0sk83u2yl"
+
+[node name="tilecolour" type="Sprite2D" parent="."]
+texture = ExtResource("2_8dtqc")
+
+[node name="outline" type="Sprite2D" parent="."]
+texture = ExtResource("3_kb2kv")
+
+[node name="symbol" type="Sprite2D" parent="."]
+texture = ExtResource("4_ua15u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lc2xo")
+}
+
+[node name="SparksAnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wl7tt")
+animation = &"ON"
+autoplay = "ON"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_ujyyc")
+
+[node name="PowerTerminalArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("9_7gp7p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerTerminalArea"]
+shape = SubResource("RectangleShape2D_wl7tt")

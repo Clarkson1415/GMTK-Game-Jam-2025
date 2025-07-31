@@ -9,6 +9,8 @@ size = Vector2(16, 16)
 [node name="DraggableCableCorner" type="Node2D" node_paths=PackedStringArray("areaCollisionShape")]
 modulate = Color(0.919808, 6.95008e-05, 0.708071, 1)
 script = ExtResource("1_1uy7u")
+rotationTime = null
+thisColour = null
 wireTypeItIs = 1
 areaCollisionShape = NodePath("Area2D/CollisionShape2D")
 

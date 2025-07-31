@@ -1,18 +1,24 @@
 extends Node2D
 
+## Can drag and rotate. To put wire stuff in another script
 class_name DraggableObject
 
 @onready var area_2d: Area2D = $Area2D
-
 var bodyItsInside: StaticBody2D = null
 @export var rotationTime = 0.2
 @export var thisColour: WireColours.WireColour
-
 enum wireType {straight, corner, fourWay}
 @export var wireTypeItIs: wireType
 
-@export var inputArea: Area2D
-@export var outputArea: Area2D
+var initialPos: Vector2
+var underCursor: bool = false
+var dragging: bool = false
+var rPressed: bool = false
+
+@export var highlightSprite: Sprite2D
+@export var wireSprite: Sprite2D
+@export var powerONSprite: Sprite2D
+@export var powerController: PowerController
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,38 +27,36 @@ func _ready() -> void:
 	area_2d.body_entered.connect(onArea2DBodyEntered)
 	area_2d.body_exited.connect(onArea2DBodyExited)
 	snapToGrid()
-	modulate = WireColours.colourArray[thisColour]
+	wireSprite.self_modulate = WireColours.colourArray[thisColour]
+	powerONSprite.visible = false
+	powerController.PowerON.connect(powerOn)
+	powerController.PowerOFF.connect(powerOFF)
+
+func powerOn() -> void:
+	powerONSprite.visible = true;
+
+func powerOFF():
+	powerONSprite.visible = false;
 
 func onMouseEntered():
 	# if something is being dragged and its not this object
 	if Global.isDraggingGlobal:
 		return; 
-	print("mouse mouse enter")
-	scale = Vector2(1.05, 1.05)
 	underCursor = true
-	# TODO: more feeback like a highlight idk
+	highlightSprite.visible = true
 
 func onMouseExit():
-	print("mouse exit")
 	underCursor = false
-	scale = Vector2(1, 1)
+	highlightSprite.visible = false
 
 func onArea2DBodyEntered(body: StaticBody2D):
 	if body.is_in_group("dropable"):
-		print("entered")
 		bodyItsInside = body
 
 func onArea2DBodyExited(body):
 	# the area to drop on change col to indicate placing on this tile.
 	if body.is_in_group("dropable"):
-		print("exit")
 		bodyItsInside = null
-
-var initialPos: Vector2
-
-var underCursor: bool = false
-var dragging: bool = false
-var rPressed: bool = false
 
 func _input(event: InputEvent) -> void:
 	if !underCursor:
