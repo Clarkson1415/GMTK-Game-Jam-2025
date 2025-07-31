@@ -6,11 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vef74"]
 size = Vector2(16, 16)
 
-[node name="DraggableCableStraight" type="Node2D" node_paths=PackedStringArray("inputRay", "outputRay", "areaCollisionShape")]
+[node name="DraggableCableStraight" type="Node2D" node_paths=PackedStringArray("areaCollisionShape")]
 modulate = Color(0.919808, 6.95008e-05, 0.708071, 1)
 script = ExtResource("1_t2la6")
-inputRay = NodePath("input")
-outputRay = NodePath("output")
 areaCollisionShape = NodePath("Area2D/CollisionShape2D")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -20,11 +18,3 @@ shape = SubResource("RectangleShape2D_vef74")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_bewpm")
-
-[node name="output" type="RayCast2D" parent="."]
-position = Vector2(0, -2)
-target_position = Vector2(0, -7)
-
-[node name="input" type="RayCast2D" parent="."]
-position = Vector2(0, 2)
-target_position = Vector2(0, 7)
