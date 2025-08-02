@@ -1,9 +1,84 @@
-[gd_scene load_steps=9 format=3 uid="uid://bua7rngh5dgrg"]
+[gd_scene load_steps=18 format=3 uid="uid://bua7rngh5dgrg"]
 
 [ext_resource type="Texture2D" uid="uid://cmk6oi2n20m1p" path="res://MyArt/highlight.png" id="1_568tc"]
-[ext_resource type="Script" uid="uid://cgkyeuodjxr34" path="res://UIScenes/toggle_on_esc.gd" id="2_gw77u"]
+[ext_resource type="Script" uid="uid://c4yvqg7ew2txa" path="res://Scripts/ScaleCanvasToMatchPixelArt.gd" id="1_x66ne"]
+[ext_resource type="Script" uid="uid://cgkyeuodjxr34" path="res://Scripts/toggle_on_esc.gd" id="2_gw77u"]
 [ext_resource type="Texture2D" uid="uid://bwtoas72u4ujw" path="res://MyArt/lightyellow.png" id="3_lnk8x"]
-[ext_resource type="Texture2D" uid="uid://cu5lwrech36gq" path="res://MyArt/outline.png" id="3_qeero"]
+[ext_resource type="FontFile" uid="uid://cuaqhgl3k5vti" path="res://fonts/PixelOperator8.ttf" id="4_x66ne"]
+[ext_resource type="Script" uid="uid://b47ptdv03ghvx" path="res://UIScenes/MenuButton.gd" id="5_0v6rr"]
+[ext_resource type="Texture2D" uid="uid://bd2lacl3wul0j" path="res://MyArt/Button32by16.png" id="5_vyhd4"]
+[ext_resource type="Texture2D" uid="uid://b04r8t7n1c47j" path="res://MyArt/ButtonPressed.png" id="7_o2ujc"]
+
+[sub_resource type="Animation" id="Animation_0v6rr"]
+resource_name = "Hover"
+
+[sub_resource type="Animation" id="Animation_o2ujc"]
+resource_name = "Default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_vyhd4")]
+}
+
+[sub_resource type="Animation" id="Animation_1kykq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_vyhd4")]
+}
+
+[sub_resource type="Animation" id="Animation_xfw0t"]
+resource_name = "Pressed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_o2ujc")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1kykq"]
+_data = {
+&"ButtonDown": SubResource("Animation_xfw0t"),
+&"Default": SubResource("Animation_o2ujc"),
+&"Hover": SubResource("Animation_0v6rr"),
+&"RESET": SubResource("Animation_1kykq")
+}
+
+[sub_resource type="Animation" id="Animation_qeero"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -448)]
+}
 
 [sub_resource type="Animation" id="Animation_gw77u"]
 resource_name = "SlideIn"
@@ -37,21 +112,6 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(0, -448)]
 }
 
-[sub_resource type="Animation" id="Animation_qeero"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control3:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -448)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qeero"]
 _data = {
 &"RESET": SubResource("Animation_qeero"),
@@ -60,46 +120,96 @@ _data = {
 }
 
 [node name="EscapeUI" type="CanvasLayer"]
+script = ExtResource("1_x66ne")
 
 [node name="Control3" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+offset_top = -448.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = -408.0
 
 [node name="bg" type="Sprite2D" parent="Control3"]
-modulate = Color(0.163035, 0.419981, 0.296768, 1)
-position = Vector2(320, 184)
-scale = Vector2(49, 26)
+modulate = Color(0.164706, 0.419608, 0.298039, 1)
+position = Vector2(161.334, 90.7372)
+scale = Vector2(20.1667, 12.5609)
 texture = ExtResource("1_568tc")
 
 [node name="lightnin" type="Sprite2D" parent="Control3"]
-position = Vector2(288, 80)
+position = Vector2(128, 42.94)
 texture = ExtResource("3_lnk8x")
 
 [node name="Label" type="Label" parent="Control3"]
 layout_mode = 0
-offset_left = 304.0
-offset_top = 69.06
-offset_right = 349.0
-offset_bottom = 92.06
+offset_left = 138.164
+offset_top = 38.956
+offset_right = 198.164
+offset_bottom = 61.956
+theme_override_fonts/font = ExtResource("4_x66ne")
+theme_override_font_sizes/font_size = 8
 text = "Menu"
 
 [node name="Levels" type="Control" parent="Control3"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 8.0
-offset_top = 428.0
-offset_right = 48.0
-offset_bottom = 468.0
+offset_left = 168.0
+offset_top = 88.0001
+offset_right = 208.0
+offset_bottom = 128.0
 
 [node name="GridContainer" type="GridContainer" parent="Control3/Levels"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -56.0003
+offset_top = -9.15527e-05
+offset_right = 59.9997
+offset_bottom = 39.9999
+columns = 6
 
-[node name="Sprite2D" type="Sprite2D" parent="Control3/Levels/GridContainer"]
-texture = ExtResource("3_qeero")
+[node name="Button" type="Button" parent="Control3" node_paths=PackedStringArray("anim")]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 137.0
+offset_top = 78.0
+offset_right = 169.0
+offset_bottom = 109.0
+text = " "
+script = ExtResource("5_0v6rr")
+anim = NodePath("AnimationPlayer")
+
+[node name="TextureRect" type="TextureRect" parent="Control3/Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.277778
+anchor_top = 0.264706
+anchor_right = 0.722222
+anchor_bottom = 0.735294
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_vyhd4")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Control3/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -3.5
+offset_right = 14.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_x66ne")
+theme_override_font_sizes/font_size = 8
+text = "Test"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control3/Button"]
+libraries = {
+&"": SubResource("AnimationLibrary_1kykq")
+}
+autoplay = "Default"
 
 [node name="ToggleOnEsc" type="AnimationPlayer" parent="."]
 libraries = {
