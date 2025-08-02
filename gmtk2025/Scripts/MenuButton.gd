@@ -1,5 +1,7 @@
 extends Button
 
+class_name AbstractGameButton
+
 @export var anim: AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
@@ -11,22 +13,24 @@ func _ready() -> void:
 	mouse_exited.connect(_onUnHover)
 
 func _onUnHover():
-	print("unhover")
+	anim.play(&"Default")
+	print("Unhover")
 
 func _onHover():
-	print("hover")
+	anim.play(&"Hover")
+	print("Hover")
 
 func _onPressed():
-	print("pressed")
+	anim.play(&"ButtonDown")
+	_protectedAbstractOnPressed()
+
+func _protectedAbstractOnPressed():
+	push_error("Abstract game button on pressed behaviour not implemented on " + self.name)
 
 func _onDown():
 	anim.play(&"ButtonDown")
 	print("Down")
 
 func _onUp():
-	anim.play(&"Default")
+	anim.play(&"Hover")
 	print("UP")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

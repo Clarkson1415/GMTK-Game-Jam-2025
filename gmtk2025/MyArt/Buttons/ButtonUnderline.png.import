@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd2lacl3wul0j"
-path="res://.godot/imported/Button32by16.png-c4b772dcd5daaf4bdb5574650a9c4f3b.ctex"
+uid="uid://cbsdeumqfmbjy"
+path="res://.godot/imported/ButtonUnderline.png-195ee4760275bc9768feef6783f48058.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MyArt/Button32by16.png"
-dest_files=["res://.godot/imported/Button32by16.png-c4b772dcd5daaf4bdb5574650a9c4f3b.ctex"]
+source_file="res://MyArt/Buttons/ButtonUnderline.png"
+dest_files=["res://.godot/imported/ButtonUnderline.png-195ee4760275bc9768feef6783f48058.ctex"]
 
 [params]
 

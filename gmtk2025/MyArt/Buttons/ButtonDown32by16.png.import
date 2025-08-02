@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqm30am24n52h"
-path="res://.godot/imported/orangeemptyTile.png-dd464194ebd01def0ad8793eb609b209.ctex"
+uid="uid://nm33xavwa7bf"
+path="res://.godot/imported/ButtonDown32by16.png-d66b385afa21b37b0193447a6d3f654a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MyArt/orangeemptyTile.png"
-dest_files=["res://.godot/imported/orangeemptyTile.png-dd464194ebd01def0ad8793eb609b209.ctex"]
+source_file="res://MyArt/Buttons/ButtonDown32by16.png"
+dest_files=["res://.godot/imported/ButtonDown32by16.png-d66b385afa21b37b0193447a6d3f654a.ctex"]
 
 [params]
 

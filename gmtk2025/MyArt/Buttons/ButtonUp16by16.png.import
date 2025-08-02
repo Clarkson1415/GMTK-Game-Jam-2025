@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxhf1tvyvdd5p"
-path="res://.godot/imported/blockedTile.png-728e6b09be6a67053e80d0b3e4080397.ctex"
+uid="uid://dx754hvfovv63"
+path="res://.godot/imported/ButtonUp16by16.png-3dabf9534fb44a8a4df87e84a0b44829.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MyArt/blockedTile.png"
-dest_files=["res://.godot/imported/blockedTile.png-728e6b09be6a67053e80d0b3e4080397.ctex"]
+source_file="res://MyArt/Buttons/ButtonUp16by16.png"
+dest_files=["res://.godot/imported/ButtonUp16by16.png-3dabf9534fb44a8a4df87e84a0b44829.ctex"]
 
 [params]
 

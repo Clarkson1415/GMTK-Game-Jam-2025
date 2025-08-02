@@ -17,10 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalDragging="*res://Scripts/globalDragging.gd"
-WireColours="*res://Scripts/WireColours.gd"
-GameSounds="*res://Scripts/GameSounds.gd"
-GameSettings="*res://Scripts/GameSettings.gd"
+GlobalDragging="*res://Scripts/Globals/globalDragging.gd"
+WireColours="*res://Scripts/Globals/WireColours.gd"
+GameSounds="*res://Scripts/Globals/GameSounds.gd"
+GameSettings="*res://Scripts/Globals/GameSettings.gd"
+EscapeUi="*res://UIScenes/EscapeUI.tscn"
 
 [display]
 

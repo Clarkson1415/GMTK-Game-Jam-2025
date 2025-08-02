@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0rx1nwkvfmpv"
-path="res://.godot/imported/bluewal.png-4fe93c1403d8493d3582853add4a45ff.ctex"
+uid="uid://bd2lacl3wul0j"
+path="res://.godot/imported/Button32by16.png-462dbddb8f8ff5255265072d25763d4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MyArt/bluewal.png"
-dest_files=["res://.godot/imported/bluewal.png-4fe93c1403d8493d3582853add4a45ff.ctex"]
+source_file="res://MyArt/Buttons/Button32by16.png"
+dest_files=["res://.godot/imported/Button32by16.png-462dbddb8f8ff5255265072d25763d4b.ctex"]
 
 [params]
 
