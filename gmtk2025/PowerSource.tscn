@@ -1,13 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://bjmah8tuplohf"]
+[gd_scene load_steps=20 format=3 uid="uid://bjmah8tuplohf"]
 
-[ext_resource type="Script" uid="uid://drqr27awcomuf" path="res://PowerSource.gd" id="1_ujyyc"]
-[ext_resource type="Script" uid="uid://b4ep0sk83u2yl" path="res://Cables/PowerController.gd" id="2_8pvx0"]
 [ext_resource type="Texture2D" uid="uid://xhk4rn5mtbpv" path="res://my/emptyTile.png" id="2_wl7tt"]
 [ext_resource type="Texture2D" uid="uid://cu5lwrech36gq" path="res://my/outline.png" id="3_5h7co"]
 [ext_resource type="Texture2D" uid="uid://bwtoas72u4ujw" path="res://my/lightyellow.png" id="4_feurs"]
 [ext_resource type="Texture2D" uid="uid://cirpv5j2dl16g" path="res://my/lighning.png" id="5_oxywb"]
 [ext_resource type="Texture2D" uid="uid://c640te23utmfn" path="res://my/BLANK.png" id="6_feurs"]
-[ext_resource type="Script" uid="uid://dmuvp6vp1wwbg" path="res://PowerableArea.gd" id="6_wl7tt"]
 [ext_resource type="Texture2D" uid="uid://c6t3wvrd21v7u" path="res://my/Attempt2Sparks-Sheet.png" id="7_feurs"]
 
 [sub_resource type="Animation" id="Animation_iotsf"]
@@ -164,21 +161,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujyyc"]
 size = Vector2(12, 12)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wl7tt"]
-size = Vector2(16, 16)
-
-[node name="powerSource" type="Node2D" node_paths=PackedStringArray("tileSprite", "animationPlayer", "outlineSprite", "powerController")]
-script = ExtResource("1_ujyyc")
-ON = true
-tileSprite = NodePath("tilecolour")
-animationPlayer = NodePath("AnimationPlayer")
-outlineSprite = NodePath("outline")
-powerController = NodePath("PowerController")
-
-[node name="PowerController" type="Node2D" parent="." node_paths=PackedStringArray("area1")]
-script = ExtResource("2_8pvx0")
-area1 = [NodePath("../PowerTerminalArea")]
-metadata/_custom_type_script = "uid://b4ep0sk83u2yl"
+[node name="PowerSourceBlock" type="Node2D"]
 
 [node name="tilecolour" type="Sprite2D" parent="."]
 texture = ExtResource("2_wl7tt")
@@ -203,11 +186,3 @@ autoplay = "ON"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_ujyyc")
-
-[node name="PowerTerminalArea" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("6_wl7tt")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerTerminalArea"]
-shape = SubResource("RectangleShape2D_wl7tt")

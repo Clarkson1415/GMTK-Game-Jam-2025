@@ -3,12 +3,9 @@ extends Node2D
 ## Can drag and rotate. To put wire stuff in another script
 class_name DraggableObject
 
-@onready var area_2d: Area2D = $Area2D
+@export var areaForDragDetection: Area2D
 var bodyItsInside: StaticBody2D = null
 @export var rotationTime = 0.2
-@export var thisColour: WireColours.WireColour
-enum wireType {straight, corner, fourWay}
-@export var wireTypeItIs: wireType
 
 var initialPos: Vector2
 var underCursor: bool = false
@@ -16,27 +13,14 @@ var dragging: bool = false
 var rPressed: bool = false
 
 @export var highlightSprite: Sprite2D
-@export var wireSprite: Sprite2D
-@export var powerONSprite: Sprite2D
-@export var powerController: PowerController
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	area_2d.mouse_entered.connect(onMouseEntered)
-	area_2d.mouse_exited.connect(onMouseExit)
-	area_2d.body_entered.connect(onArea2DBodyEntered)
-	area_2d.body_exited.connect(onArea2DBodyExited)
+	areaForDragDetection.mouse_entered.connect(onMouseEntered)
+	areaForDragDetection.mouse_exited.connect(onMouseExit)
+	areaForDragDetection.body_entered.connect(onArea2DBodyEntered)
+	areaForDragDetection.body_exited.connect(onArea2DBodyExited)
 	snapToGrid()
-	wireSprite.self_modulate = WireColours.colourArray[thisColour]
-	powerONSprite.visible = false
-	powerController.PowerON.connect(powerOn)
-	powerController.PowerOFF.connect(powerOFF)
-
-func powerOn() -> void:
-	powerONSprite.visible = true;
-
-func powerOFF():
-	powerONSprite.visible = false;
 
 func onMouseEntered():
 	# if something is being dragged and its not this object

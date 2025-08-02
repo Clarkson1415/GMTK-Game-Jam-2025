@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdq6a7ha1vc63"]
+
+[ext_resource type="Script" uid="uid://dmuvp6vp1wwbg" path="res://PowerableArea.gd" id="1_eaf7y"]
+[ext_resource type="Texture2D" uid="uid://cukhxx5gfa3fj" path="res://my/HalfAWire.png" id="2_0giky"]
+[ext_resource type="Texture2D" uid="uid://bbwcmaytwikml" path="res://my/HalfYellowLines.png" id="3_bnmib"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ujxe"]
+size = Vector2(2, 10)
+
+[node name="PowerAbleArea" type="Area2D" node_paths=PackedStringArray("wireColourSprite", "yellowLinesSprite")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_eaf7y")
+wireColourSprite = NodePath("Wire")
+yellowLinesSprite = NodePath("yellow")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_3ujxe")
+
+[node name="Wire" type="Sprite2D" parent="."]
+texture = ExtResource("2_0giky")
+
+[node name="yellow" type="Sprite2D" parent="."]
+texture = ExtResource("3_bnmib")
