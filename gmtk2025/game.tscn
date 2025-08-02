@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://hnltp074h12i"]
+[gd_scene load_steps=41 format=4 uid="uid://hnltp074h12i"]
 
 [ext_resource type="Texture2D" uid="uid://b8qqlloj53og6" path="res://newart/Bright walls tilemap.png" id="4_j5wjh"]
 [ext_resource type="Texture2D" uid="uid://ch048h7py7b1x" path="res://newart/Floor tiles-Sheet.png" id="5_vef74"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://bjmah8tuplohf" path="res://PowerSource.tscn" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://bdq6a7ha1vc63" path="res://PowerableArea.tscn" id="9_215e1"]
 [ext_resource type="Texture2D" uid="uid://d4lpjtbutmdr5" path="res://Pixel Art Sign Pack - Animated/Pixel Art Sign Pack - Animated/Sign 1/Sign 1 Glow - OPEN.png" id="10_hve3p"]
-[ext_resource type="Script" uid="uid://drqr27awcomuf" path="res://PowerSourceBlock.gd" id="11_lc2xo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lc2xo"]
 texture = ExtResource("4_j5wjh")
@@ -349,9 +348,6 @@ texture = ExtResource("6_vef74")
 [sub_resource type="TileSet" id="TileSet_mfdv2"]
 sources/0 = SubResource("TileSetAtlasSource_hve3p")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lc2xo"]
-size = Vector2(4, 3)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_mfdv2"]
 atlas = ExtResource("10_hve3p")
 region = Rect2(0, 0, 31, 24)
@@ -522,19 +518,13 @@ area2ds = [NodePath("../PowerAbleArea")]
 metadata/_custom_type_script = "uid://b4ep0sk83u2yl"
 
 [node name="PowerAbleArea" parent="PowerSourceBlock" instance=ExtResource("9_215e1")]
+isPowerSource = true
 
-[node name="PowerSource" type="Area2D" parent="PowerSourceBlock"]
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("11_lc2xo")
-metadata/_custom_type_script = "uid://drqr27awcomuf"
+[node name="top" parent="." instance=ExtResource("7_eow3j")]
+position = Vector2(-16, 17)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerSourceBlock/PowerSource"]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_lc2xo")
-
-[node name="DraggableCableStraight2" parent="." instance=ExtResource("7_eow3j")]
-position = Vector2(-16, 32)
+[node name="END" parent="." instance=ExtResource("7_eow3j")]
+position = Vector2(0, 31)
 
 [node name="Light" type="Node2D" parent="."]
 position = Vector2(0, -40)

@@ -27,45 +27,85 @@ func _ready() -> void:
 	area_exited.connect(_on_area_exited)
 	area_entered.connect(_on_area_entered)
 	resetAdjacentList()
+	if isPowerSource:
+		turnON()
 
 func resetAdjacentList():
-	for connectedArea in adjacentWires:
-		connectedArea.TURNOFFADJACENT.disconnect(turnOFF)
-		connectedArea.TURNONADJACENT.disconnect(turnON)
 	adjacentWires.clear()
 	for overlap in get_overlapping_areas():
-		if overlap is PowerableArea:
+		if overlap is PowerableArea and overlap != self:
 			adjacentWires.append(overlap)
-	for area: PowerableArea in adjacentWires:
-		area.TURNOFFADJACENT.connect(turnOFF)
-		area.TURNONADJACENT.connect(turnON)
 
 func _on_area_exited(area: Area2D):
-	resetAdjacentList()
+	if self.get_parent().name == "END":
+		print("end left.")
+	var pa: PowerableArea = area as PowerableArea
+	if pa == null:
+		return
+	# if removed area was powering this and no other adjacent areas are powersing it.?
+	if pa.IsPowered():
+		turnOFF_propagate()
 
 func _on_area_entered(area: Area2D):
-	resetAdjacentList()
+	if self.get_parent().name == "END":
+		print("end left.")
+	var pa: PowerableArea = area as PowerableArea
+	if pa == null:
+		return
+	if pa.IsPowered() or pa.isPowerSource:
+		turnON_propagate()
 
 func turnON():
 	yellowLinesSprite.visible = true
 	_isPoweredReadonly = true
-	emit_signal("TURNONADJACENT")
 
 func turnOFF():
 	yellowLinesSprite.visible = false
 	_isPoweredReadonly = false
-	emit_signal("TURNOFFADJACENT")
 
 func IsPowered():
 	return _isPoweredReadonly
 
 func _process(delta: float) -> void:
-	if isTouchingPowerSource():
-		turnON()
+	if isPowerSource:
+		turnON_propagate()
+		return
+	resetAdjacentList()
+	var isThisPowered = false
+	for adj in adjacentWires:
+		if adj.isPowerSource or adj.IsPowered():
+			isThisPowered = true
+	if isThisPowered:
+		turnON_propagate()
+	else:
+		turnOFF_propagate()
 
-func isTouchingPowerSource() -> bool:
-	var overlapping = get_overlapping_areas()
-	for pa in overlapping:
-		if pa is PowerSource:
-			return true
-	return false
+## permanantly on.
+@export var isPowerSource: bool = false
+
+func turnOFF_propagate(visited := {}):
+	resetAdjacentList()
+	if isPowerSource:
+		turnON()
+		return
+	if self in visited:
+		return
+	visited[self] = true
+	_isPoweredReadonly = false
+	yellowLinesSprite.visible = false
+	# instead is the neighbour is powered dont remit
+	print("")
+	for neighbor in adjacentWires:
+		neighbor.turnOFF_propagate(visited)
+
+func turnON_propagate(visited := {}):
+	resetAdjacentList()
+	if self in visited:
+		return
+	visited[self] = true
+	_isPoweredReadonly = true
+	yellowLinesSprite.visible = true
+	# instead is the neighbour is powered dont remit
+	print("")
+	for neighbor in adjacentWires:
+		neighbor.turnON_propagate(visited)
