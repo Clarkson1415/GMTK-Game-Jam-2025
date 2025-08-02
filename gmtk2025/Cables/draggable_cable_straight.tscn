@@ -1,20 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0ouopba3y5qf"]
+[gd_scene load_steps=4 format=3 uid="uid://d0ouopba3y5qf"]
 
-[ext_resource type="Script" uid="uid://kxqhb8pcgjvx" path="res://DraggableObject.gd" id="1_t2la6"]
-[ext_resource type="Script" uid="uid://dmuvp6vp1wwbg" path="res://PowerableArea.gd" id="3_t2la6"]
-[ext_resource type="Texture2D" uid="uid://cmk6oi2n20m1p" path="res://my/highlight.png" id="4_6y1jc"]
-[ext_resource type="Texture2D" uid="uid://cukhxx5gfa3fj" path="res://my/HalfAWire.png" id="4_411l4"]
-[ext_resource type="Texture2D" uid="uid://bbwcmaytwikml" path="res://my/HalfYellowLines.png" id="5_hol8y"]
-[ext_resource type="Script" uid="uid://b4ep0sk83u2yl" path="res://Cables/PowerController.gd" id="6_411l4"]
+[ext_resource type="Script" uid="uid://kxqhb8pcgjvx" path="res://Scripts/DraggableObject.gd" id="1_t2la6"]
+[ext_resource type="Texture2D" uid="uid://cmk6oi2n20m1p" path="res://MyArt/highlight.png" id="4_6y1jc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vef74"]
 size = Vector2(10, 10)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtgyf"]
-size = Vector2(2, 10)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2la6"]
-size = Vector2(2, 10)
 
 [node name="DraggableCableStraight" type="Node2D" node_paths=PackedStringArray("areaForDragDetection", "highlightSprite", "areaCollisionShape")]
 script = ExtResource("1_t2la6")
@@ -22,50 +12,10 @@ areaForDragDetection = NodePath("dragable")
 highlightSprite = NodePath("highlight")
 areaCollisionShape = NodePath("dragable/CollisionShape2D")
 
-[node name="powercontroller" type="Node2D" parent="." node_paths=PackedStringArray("area2ds")]
-script = ExtResource("6_411l4")
-area2ds = [NodePath("../CableArea1"), NodePath("../CableArea2")]
-
 [node name="dragable" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="dragable"]
 shape = SubResource("RectangleShape2D_vef74")
-
-[node name="CableArea1" type="Area2D" parent="." node_paths=PackedStringArray("wireColourSprite", "yellowLinesSprite")]
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("3_t2la6")
-wireColourSprite = NodePath("Wire")
-yellowLinesSprite = NodePath("yellow")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CableArea1"]
-position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_mtgyf")
-
-[node name="Wire" type="Sprite2D" parent="CableArea1"]
-texture = ExtResource("4_411l4")
-
-[node name="yellow" type="Sprite2D" parent="CableArea1"]
-texture = ExtResource("5_hol8y")
-
-[node name="CableArea2" type="Area2D" parent="." node_paths=PackedStringArray("wireColourSprite", "yellowLinesSprite")]
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("3_t2la6")
-wireColourSprite = NodePath("Wire")
-yellowLinesSprite = NodePath("yellow")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CableArea2"]
-position = Vector2(0, -4)
-shape = SubResource("RectangleShape2D_t2la6")
-
-[node name="Wire" type="Sprite2D" parent="CableArea2"]
-position = Vector2(0, -8)
-texture = ExtResource("4_411l4")
-
-[node name="yellow" type="Sprite2D" parent="CableArea2"]
-position = Vector2(0, -8)
-texture = ExtResource("5_hol8y")
 
 [node name="highlight" type="Sprite2D" parent="."]
 visible = false

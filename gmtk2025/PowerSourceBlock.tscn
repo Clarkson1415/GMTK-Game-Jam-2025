@@ -1,0 +1,194 @@
+[gd_scene load_steps=19 format=3 uid="uid://bjmah8tuplohf"]
+
+[ext_resource type="Texture2D" uid="uid://c2bb7rnx352fn" path="res://MyArt/PowerSource.png" id="1_qa6cs"]
+[ext_resource type="Texture2D" uid="uid://c640te23utmfn" path="res://MyArt/BLANK.png" id="6_feurs"]
+[ext_resource type="Texture2D" uid="uid://c6t3wvrd21v7u" path="res://MyArt/Attempt2Sparks-Sheet.png" id="7_feurs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ep8k"]
+atlas = ExtResource("6_feurs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxywb"]
+atlas = ExtResource("7_feurs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ka84"]
+atlas = ExtResource("7_feurs")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwj2k"]
+atlas = ExtResource("7_feurs")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_votsg"]
+atlas = ExtResource("7_feurs")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5d1de"]
+atlas = ExtResource("7_feurs")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oep3m"]
+atlas = ExtResource("7_feurs")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wl7tt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ep8k")
+}],
+"loop": true,
+"name": &"OFF",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxywb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ka84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwj2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_votsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5d1de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oep3m")
+}],
+"loop": true,
+"name": &"ON",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujyyc"]
+size = Vector2(12, 12)
+
+[sub_resource type="Gradient" id="Gradient_qa6cs"]
+colors = PackedColorArray(1, 1, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qa6cs"]
+gradient = SubResource("Gradient_qa6cs")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.662393, 0.74359)
+
+[sub_resource type="Animation" id="Animation_qa6cs"]
+resource_name = "ON"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SparksAnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"ON"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.466667, 0.633333, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.888333, 1.3, 0.0, 1.5]
+}
+
+[sub_resource type="Animation" id="Animation_iyh2i"]
+resource_name = "OFF"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SparksAnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"OFF"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4hcp3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SparksAnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"ON"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hevua"]
+_data = {
+&"OFF": SubResource("Animation_iyh2i"),
+&"ON": SubResource("Animation_qa6cs"),
+&"RESET": SubResource("Animation_4hcp3")
+}
+
+[node name="PowerSourceBlock" type="Node2D"]
+
+[node name="Tile" type="Sprite2D" parent="."]
+texture = ExtResource("1_qa6cs")
+
+[node name="SparksAnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wl7tt")
+animation = &"ON"
+autoplay = "ON"
+frame_progress = 0.168697
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_ujyyc")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.0
+texture = SubResource("GradientTexture2D_qa6cs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hevua")
+}
+autoplay = "ON"

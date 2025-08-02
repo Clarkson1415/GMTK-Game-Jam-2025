@@ -11,14 +11,26 @@ config_version=5
 [application]
 
 config/name="GMTK2025"
-run/main_scene="uid://hnltp074h12i"
+run/main_scene="uid://d02qxed4aguu"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://global.gd"
-WireColours="*res://WireColours.gd"
+GlobalDragging="*res://Scripts/globalDragging.gd"
+WireColours="*res://Scripts/WireColours.gd"
+GameSounds="*res://Scripts/GameSounds.gd"
+GameSettings="*res://Scripts/GameSettings.gd"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/mode=4
+window/size/resizable=false
+window/size/borderless=true
+window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 
 [input]
 

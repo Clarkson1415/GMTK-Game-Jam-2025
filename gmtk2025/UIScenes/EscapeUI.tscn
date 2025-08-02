@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://bua7rngh5dgrg"]
+
+[ext_resource type="Texture2D" uid="uid://cmk6oi2n20m1p" path="res://MyArt/highlight.png" id="1_568tc"]
+[ext_resource type="Script" uid="uid://cgkyeuodjxr34" path="res://UIScenes/toggle_on_esc.gd" id="2_gw77u"]
+[ext_resource type="Texture2D" uid="uid://bwtoas72u4ujw" path="res://MyArt/lightyellow.png" id="3_lnk8x"]
+[ext_resource type="Texture2D" uid="uid://cu5lwrech36gq" path="res://MyArt/outline.png" id="3_qeero"]
+
+[sub_resource type="Animation" id="Animation_gw77u"]
+resource_name = "SlideIn"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -448), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lnk8x"]
+resource_name = "SlideOut"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -448)]
+}
+
+[sub_resource type="Animation" id="Animation_qeero"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -448)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qeero"]
+_data = {
+&"RESET": SubResource("Animation_qeero"),
+&"SlideIn": SubResource("Animation_gw77u"),
+&"SlideOut": SubResource("Animation_lnk8x")
+}
+
+[node name="EscapeUI" type="CanvasLayer"]
+
+[node name="Control3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="bg" type="Sprite2D" parent="Control3"]
+modulate = Color(0.163035, 0.419981, 0.296768, 1)
+position = Vector2(320, 184)
+scale = Vector2(49, 26)
+texture = ExtResource("1_568tc")
+
+[node name="lightnin" type="Sprite2D" parent="Control3"]
+position = Vector2(288, 80)
+texture = ExtResource("3_lnk8x")
+
+[node name="Label" type="Label" parent="Control3"]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 69.06
+offset_right = 349.0
+offset_bottom = 92.06
+text = "Menu"
+
+[node name="Levels" type="Control" parent="Control3"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 428.0
+offset_right = 48.0
+offset_bottom = 468.0
+
+[node name="GridContainer" type="GridContainer" parent="Control3/Levels"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control3/Levels/GridContainer"]
+texture = ExtResource("3_qeero")
+
+[node name="ToggleOnEsc" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qeero")
+}
+autoplay = "RESET"
+script = ExtResource("2_gw77u")
