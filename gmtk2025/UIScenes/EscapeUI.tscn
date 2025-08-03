@@ -532,6 +532,7 @@ grow_vertical = 2
 texture = ExtResource("3_lnk8x")
 
 [node name="Outline" type="TextureRect" parent="Control3/Levels/GridContainer/Button"]
+visible = false
 modulate = Color(0.6, 0.21, 0.15, 1)
 layout_mode = 1
 anchors_preset = 8

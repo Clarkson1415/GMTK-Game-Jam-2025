@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://f1kv0ibyqlp"]
+[gd_scene load_steps=23 format=4 uid="uid://yox804wfwex0"]
 
 [ext_resource type="Texture2D" uid="uid://b8qqlloj53og6" path="res://newart/Bright walls tilemap.png" id="1_nd6n0"]
 [ext_resource type="Script" uid="uid://chhker38tu7rl" path="res://GameScenes/LevelInitialiser.gd" id="1_vl73f"]
@@ -8,10 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://cwkfafgly8mj3" path="res://newart/Wall tiles-Sheet.png" id="5_natyy"]
 [ext_resource type="Texture2D" uid="uid://bmf61vcsqoom2" path="res://neo_zero_V1.0/neo_zero_tiles_and_buildings_01.png" id="6_vxffd"]
 [ext_resource type="PackedScene" uid="uid://d0ouopba3y5qf" path="res://PuzzlePieces/Cables/DraggableCableTemplate.tscn" id="7_xa1yo"]
-[ext_resource type="PackedScene" uid="uid://dno8abwxq52bu" path="res://PuzzlePieces/PowerableAreaHalfForCornerPieces.tscn" id="8_iluu6"]
+[ext_resource type="PackedScene" uid="uid://pgadu71vgj34" path="res://PuzzlePieces/PowerableAreaHalf.tscn" id="9_x64o5"]
 [ext_resource type="PackedScene" uid="uid://bjmah8tuplohf" path="res://PuzzlePieces/PowerSourceBlock.tscn" id="10_c127t"]
 [ext_resource type="PackedScene" uid="uid://wdgmwqblv1mt" path="res://PuzzlePieces/PowerableAreaSourceLong.tscn" id="11_shvhr"]
 [ext_resource type="PackedScene" uid="uid://5rfy1kin8dar" path="res://PuzzlePieces/PowerTerminalBlock.tscn" id="12_65bkl"]
+[ext_resource type="Script" uid="uid://bsf3bvsl06i0r" path="res://Scripts/PowerableArea/PowerableArea.gd" id="14_natyy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lc2xo"]
 texture = ExtResource("1_nd6n0")
@@ -349,6 +350,9 @@ texture = ExtResource("6_vxffd")
 [sub_resource type="TileSet" id="TileSet_mfdv2"]
 sources/0 = SubResource("TileSetAtlasSource_hve3p")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7c3u"]
+size = Vector2(4, 12)
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_vl73f")
 
@@ -369,30 +373,40 @@ visible = false
 tile_map_data = PackedByteArray("AAAJAP7/AAAGABAAAAAJAP//AAAGABEAAAAKAP7/AAAHABAAAAAKAP//AAAHABEAAAALAP7/AAAHABAAAAALAP//AAAHABEAAAAMAP7/AAAIABIAAAAMAP//AAAIABMAAAANAP7/AAAHABAAAAANAP//AAAHABEAAAAOAP7/AAAPABIAAAAPAP7/AAAQABIAAAAQAP7/AAARABIAAAARAP7/AAAPAA4AAAASAP7/AAAQAA4AAAATAP7/AAARAA4AAAAOAP//AAAPABMAAAAPAP//AAAQABMAAAAQAP//AAAJABEAAAARAP//AAAPAA8AAAASAP//AAAQAA8AAAATAP//AAARAA8AAAATAP3/AAAKAA0AAAASAP3/AAAKAA0AAAARAP3/AAAKAA0AAAAQAP3/AAAKAA0AAAAPAP3/AAAKAA0AAAAOAP3/AAAKAA0AAAANAP3/AAAKAA0AAAAMAP3/AAAKAA0AAAALAP3/AAAKAA0AAAAKAP3/AAAKAA0AAAAJAP3/AAAKAA0AAAA=")
 tile_set = SubResource("TileSet_mfdv2")
 
-[node name="CornerWire" parent="." instance=ExtResource("7_xa1yo")]
-position = Vector2(-64, 32)
+[node name="Wire4" parent="." instance=ExtResource("7_xa1yo")]
+position = Vector2(48, 32)
 
-[node name="HalfPowerableArea" parent="CornerWire" instance=ExtResource("8_iluu6")]
+[node name="HalfPowerableArea" parent="Wire4" instance=ExtResource("9_x64o5")]
 thisColour = 1
 
-[node name="HalfPowerableArea2" parent="CornerWire" instance=ExtResource("8_iluu6")]
-rotation = -1.57079
-scale = Vector2(-1, 1)
+[node name="HalfPowerableArea2" parent="Wire4" instance=ExtResource("9_x64o5")]
+position = Vector2(0, -8)
 thisColour = 1
 
 [node name="PowerSourceBlock" parent="." instance=ExtResource("10_c127t")]
-position = Vector2(48, 32)
+position = Vector2(16, 0)
 
 [node name="LongWirePowerSource" parent="PowerSourceBlock" instance=ExtResource("11_shvhr")]
-position = Vector2(-8, 0)
-rotation = 1.5708
+position = Vector2(0, 8)
 thisColour = 1
 
 [node name="powerTerminal" parent="." node_paths=PackedStringArray("area2ds") instance=ExtResource("12_65bkl")]
-position = Vector2(16, 0)
+position = Vector2(-16, 16)
 area2ds = [NodePath("LongWirePowerSource2")]
 
+[node name="PowerableArea" type="Area2D" parent="powerTerminal"]
+rotation = -1.57079
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("14_natyy")
+metadata/_custom_type_script = "uid://bsf3bvsl06i0r"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="powerTerminal/PowerableArea"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_t7c3u")
+
 [node name="LongWirePowerSource2" parent="powerTerminal" instance=ExtResource("11_shvhr")]
-position = Vector2(0, 8)
+position = Vector2(8, 0)
+rotation = -1.57079
 thisColour = 1
 isPowerSource = false
