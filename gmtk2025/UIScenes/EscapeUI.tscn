@@ -1,19 +1,18 @@
-[gd_scene load_steps=31 format=4 uid="uid://bua7rngh5dgrg"]
+[gd_scene load_steps=26 format=4 uid="uid://bua7rngh5dgrg"]
 
-[ext_resource type="Texture2D" uid="uid://cmk6oi2n20m1p" path="res://MyArt/highlight.png" id="1_568tc"]
 [ext_resource type="Script" uid="uid://c4yvqg7ew2txa" path="res://Scripts/ScaleCanvasToMatchPixelArt.gd" id="1_x66ne"]
 [ext_resource type="Script" uid="uid://cgkyeuodjxr34" path="res://Scripts/toggle_on_esc.gd" id="2_gw77u"]
 [ext_resource type="Texture2D" uid="uid://rke1qgx10wfv" path="res://newart/Stone walls tilemap.png" id="2_w8c5r"]
 [ext_resource type="Texture2D" uid="uid://cwkfafgly8mj3" path="res://newart/Wall tiles-Sheet.png" id="3_jxcoy"]
 [ext_resource type="Texture2D" uid="uid://bwtoas72u4ujw" path="res://MyArt/lightyellow.png" id="3_lnk8x"]
+[ext_resource type="Texture2D" uid="uid://dx2a8itvck50h" path="res://MyArt/TestBG.png" id="4_jxcoy"]
 [ext_resource type="FontFile" uid="uid://cuaqhgl3k5vti" path="res://fonts/PixelOperator8.ttf" id="4_x66ne"]
-[ext_resource type="Script" uid="uid://b5vefqraehxq6" path="res://Scripts/GameLevelButton.gd" id="5_2nt4w"]
 [ext_resource type="Texture2D" uid="uid://bd2lacl3wul0j" path="res://MyArt/Buttons/Button32by16.png" id="5_vyhd4"]
+[ext_resource type="Texture2D" uid="uid://dc6f8nta5bitt" path="res://MyArt/Underline.png" id="5_w8c5r"]
 [ext_resource type="Texture2D" uid="uid://nm33xavwa7bf" path="res://MyArt/Buttons/ButtonDown32by16.png" id="7_1kykq"]
-[ext_resource type="Texture2D" uid="uid://by2y43bdykuxn" path="res://MyArt/Buttons/BetterButtonDOwn16b16.png" id="7_o2ujc"]
-[ext_resource type="Texture2D" uid="uid://evjodka40y5p" path="res://MyArt/Buttons/BetterButtonUP16b16.png" id="8_xfw0t"]
-[ext_resource type="Texture2D" uid="uid://cbsdeumqfmbjy" path="res://MyArt/Buttons/ButtonUnderline.png" id="9_1kykq"]
+[ext_resource type="PackedScene" uid="uid://bbvr8xuaeympm" path="res://UIScenes/LevelButton.tscn" id="7_2nt4w"]
 [ext_resource type="Script" uid="uid://b3ge1oi47068i" path="res://Scripts/QuitButton.gd" id="10_dp7t0"]
+[ext_resource type="Texture2D" uid="uid://cq5up7n6bwn1y" path="res://MyArt/BigButtonUnderline.png" id="13_1llr8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jxcoy"]
 texture = ExtResource("2_w8c5r")
@@ -78,239 +77,46 @@ texture = ExtResource("3_jxcoy")
 sources/2 = SubResource("TileSetAtlasSource_jxcoy")
 sources/3 = SubResource("TileSetAtlasSource_1llr8")
 
-[sub_resource type="Animation" id="Animation_xfw0t"]
-resource_name = "Pressed"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Button:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("7_o2ujc")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-7, 12)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Outline:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_o2ujc"]
-resource_name = "Default"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Button:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("8_xfw0t")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-7, 10)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Outline:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_dp7t0"]
-resource_name = "Hover"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Button:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("8_xfw0t")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-7, 10)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Outline:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_1kykq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Button:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_vyhd4")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-7, 12)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1kykq"]
-_data = {
-&"ButtonDown": SubResource("Animation_xfw0t"),
-&"Default": SubResource("Animation_o2ujc"),
-&"Hover": SubResource("Animation_dp7t0"),
-&"RESET": SubResource("Animation_1kykq")
-}
-
 [sub_resource type="Animation" id="Animation_jxcoy"]
-resource_name = "Pressed"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Button:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("7_1kykq")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-8, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Outline:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_w8c5r"]
 resource_name = "Default"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Button:texture")
+tracks/0/path = NodePath("Outline:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_vyhd4")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-8, -1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Outline:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_vyhd4")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9, -1)]
+}
 
-[sub_resource type="Animation" id="Animation_2nt4w"]
+[sub_resource type="Animation" id="Animation_1llr8"]
 resource_name = "Hover"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -346,14 +152,69 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-8, -1)]
+"values": [Vector2(-9, -1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_w8c5r"]
+[sub_resource type="Animation" id="Animation_5h33j"]
+resource_name = "ButtonDown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Outline:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_1kykq")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kt1lc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1llr8"]
 _data = {
-&"ButtonDown": SubResource("Animation_jxcoy"),
-&"Default": SubResource("Animation_w8c5r"),
-&"Hover": SubResource("Animation_2nt4w")
+&"ButtonDown": SubResource("Animation_5h33j"),
+&"Default": SubResource("Animation_jxcoy"),
+&"Hover": SubResource("Animation_1llr8"),
+&"RESET": SubResource("Animation_kt1lc")
 }
 
 [sub_resource type="Animation" id="Animation_qeero"]
@@ -421,41 +282,50 @@ offset_right = 40.0
 offset_bottom = -408.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Control3"]
+visible = false
 position = Vector2(0, -536)
 tile_map_data = PackedByteArray("AAABACEAAwAAAAAAAAABACIAAwAAAAAAAAABACMAAwAAAAAAAAABACQAAwAAAAAAAAABACUAAwAAAAAAAAABACYAAwAAAAAAAAABACcAAwAAAAAAAAABACgAAwAAAAAAAAABACkAAwAAAAAAAAABACoAAwAAAAAAAAABACsAAwAAAAAAAAABACwAAwAAAAAAAAACACEAAwAAAAAAAAACACIAAwAAAAAAAAACACMAAwAAAAAAAAACACQAAwAAAAAAAAACACUAAwAAAAAAAAACACYAAwAAAAAAAAACACcAAwAAAAAAAAACACgAAwAAAAAAAAACACkAAwAAAAAAAAACACoAAwAAAAAAAAACACsAAwAAAAAAAAACACwAAwAAAAAAAAADACEAAwAAAAAAAAADACIAAwAAAAAAAAADACMAAwAAAAAAAAADACQAAwAAAAAAAAADACUAAwAAAAAAAAADACYAAwAAAAAAAAADACcAAwAAAAAAAAADACgAAwAAAAAAAAADACkAAwAAAAAAAAADACoAAwAAAAAAAAADACsAAwAAAAAAAAADACwAAwAAAAAAAAAEACEAAwAAAAAAAAAEACIAAwAAAAAAAAAEACMAAwAAAAAAAAAEACQAAwAAAAAAAAAEACUAAwAAAAAAAAAEACYAAwAAAAAAAAAEACcAAwAAAAAAAAAEACgAAwAAAAAAAAAEACkAAwAAAAAAAAAEACoAAwAAAAAAAAAEACsAAwAAAAAAAAAEACwAAwAAAAAAAAAFACEAAwAAAAAAAAAFACIAAwAAAAAAAAAFACMAAwAAAAAAAAAFACQAAwAAAAAAAAAFACUAAwAAAAAAAAAFACYAAwAAAAAAAAAFACcAAwAAAAAAAAAFACgAAwAAAAAAAAAFACkAAwAAAAAAAAAFACoAAwAAAAAAAAAFACsAAwAAAAAAAAAFACwAAwAAAAAAAAAGACEAAwAAAAAAAAAGACIAAwAAAAAAAAAGACMAAwAAAAAAAAAGACQAAwAAAAAAAAAGACUAAwAAAAAAAAAGACYAAwAAAAAAAAAGACcAAwAAAAAAAAAGACgAAwAAAAAAAAAGACkAAwAAAAAAAAAGACoAAwAAAAAAAAAGACsAAwAAAAAAAAAGACwAAwAAAAAAAAAHACEAAwAAAAAAAAAHACIAAwAAAAAAAAAHACMAAwAAAAAAAAAHACQAAwAAAAAAAAAHACUAAwAAAAAAAAAHACYAAwAAAAAAAAAHACcAAwAAAAAAAAAHACgAAwAAAAAAAAAHACkAAwAAAAAAAAAHACoAAwAAAAAAAAAHACsAAwAAAAAAAAAHACwAAwAAAAAAAAAIACEAAwAAAAAAAAAIACIAAwAAAAAAAAAIACMAAwAAAAAAAAAIACQAAwAAAAAAAAAIACUAAwAAAAAAAAAIACYAAwAAAAAAAAAIACcAAwAAAAAAAAAIACgAAwAAAAAAAAAIACkAAwAAAAAAAAAIACoAAwAAAAAAAAAIACsAAwAAAAAAAAAIACwAAwAAAAAAAAAJACEAAwAAAAAAAAAJACIAAwAAAAAAAAAJACMAAwAAAAAAAAAJACQAAwAAAAAAAAAJACUAAwAAAAAAAAAJACYAAwAAAAAAAAAJACcAAwAAAAAAAAAJACgAAwAAAAAAAAAJACkAAwAAAAAAAAAJACoAAwAAAAAAAAAJACsAAwAAAAAAAAAJACwAAwAAAAAAAAAKACEAAwAAAAAAAAAKACIAAwAAAAAAAAAKACMAAwAAAAAAAAAKACQAAwAAAAAAAAAKACUAAwAAAAAAAAAKACYAAwAAAAAAAAAKACcAAwAAAAAAAAAKACgAAwAAAAAAAAAKACkAAwAAAAAAAAAKACoAAwAAAAAAAAAKACsAAwAAAAAAAAALACEAAwAAAAAAAAALACIAAwAAAAAAAAALACMAAwAAAAAAAAALACQAAwAAAAAAAAALACUAAwAAAAAAAAALACYAAwAAAAAAAAALACcAAwAAAAAAAAALACgAAwAAAAAAAAALACkAAwAAAAAAAAALACoAAwAAAAAAAAALACsAAwAAAAAAAAALACwAAwAAAAAAAAAMACEAAwAAAAAAAAAMACIAAwAAAAAAAAAMACMAAwAAAAAAAAAMACQAAwAAAAAAAAAMACUAAwAAAAAAAAAMACYAAwAAAAAAAAAMACcAAwAAAAAAAAAMACgAAwAAAAAAAAAMACkAAwAAAAAAAAAMACoAAwAAAAAAAAAMACsAAwAAAAAAAAAMACwAAwAAAAAAAAANACEAAwAAAAAAAAANACIAAwAAAAAAAAANACMAAwAAAAAAAAANACQAAwAAAAAAAAANACUAAwAAAAAAAAANACYAAwAAAAAAAAANACcAAwAAAAAAAAANACgAAwAAAAAAAAANACkAAwAAAAAAAAANACoAAwAAAAAAAAANACsAAwAAAAAAAAANACwAAwAAAAAAAAAOACEAAwAAAAAAAAAOACIAAwAAAAAAAAAOACMAAwAAAAAAAAAOACQAAwAAAAAAAAAOACUAAwAAAAAAAAAOACYAAwAAAAAAAAAOACcAAwAAAAAAAAAOACgAAwAAAAAAAAAOACkAAwAAAAAAAAAOACoAAwAAAAAAAAAOACsAAwAAAAAAAAAOACwAAwAAAAAAAAAPACEAAwAAAAAAAAAPACIAAwAAAAAAAAAPACMAAwAAAAAAAAAPACQAAwAAAAAAAAAPACUAAwAAAAAAAAAPACYAAwAAAAAAAAAPACcAAwAAAAAAAAAPACgAAwAAAAAAAAAPACkAAwAAAAAAAAAPACoAAwAAAAAAAAAPACsAAwAAAAAAAAAPACwAAwAAAAAAAAAQACEAAwAAAAAAAAAQACIAAwAAAAAAAAAQACMAAwAAAAAAAAAQACQAAwAAAAAAAAAQACUAAwAAAAAAAAAQACYAAwAAAAAAAAAQACcAAwAAAAAAAAAQACgAAwAAAAAAAAAQACkAAwAAAAAAAAAQACoAAwAAAAAAAAAQACsAAwAAAAAAAAAQACwAAwAAAAAAAAARACEAAwAAAAAAAAARACIAAwAAAAAAAAARACMAAwAAAAAAAAARACQAAwAAAAAAAAARACUAAwAAAAAAAAARACYAAwAAAAAAAAARACcAAwAAAAAAAAARACgAAwAAAAAAAAARACkAAwAAAAAAAAARACoAAwAAAAAAAAARACsAAwAAAAAAAAARACwAAwAAAAAAAAASACEAAwAAAAAAAAASACIAAwAAAAAAAAASACMAAwAAAAAAAAASACQAAwAAAAAAAAASACUAAwAAAAAAAAASACYAAwAAAAAAAAASACcAAwAAAAAAAAASACgAAwAAAAAAAAASACkAAwAAAAAAAAASACoAAwAAAAAAAAASACsAAwAAAAAAAAASACwAAwAAAAAAAAAAACEAAwAAAAAAAAAAACIAAwAAAAAAAAAAACMAAwAAAAAAAAAAACQAAwAAAAAAAAAAACUAAwAAAAAAAAAAACYAAwAAAAAAAAAAACcAAwAAAAAAAAAAACgAAwAAAAAAAAAAACkAAwAAAAAAAAAAACoAAwAAAAAAAAAAACsAAwAAAAAAAAAAACwAAwAAAAAAAAATACEAAwAAAAAAAAATACIAAwAAAAAAAAATACMAAwAAAAAAAAATACQAAwAAAAAAAAATACUAAwAAAAAAAAATACYAAwAAAAAAAAATACcAAwAAAAAAAAATACgAAwAAAAAAAAATACkAAwAAAAAAAAATACoAAwAAAAAAAAATACsAAwAAAAAAAAATACwAAwAAAAAAAAAUACQAAwAAAAAAAAAUACUAAwAAAAAAAAAUACYAAwAAAAAAAAAUACcAAwAAAAAAAAAUACgAAwAAAAAAAAAUACkAAwAAAAAAAAAUACoAAwAAAAAAAAAUACsAAwAAAAAAAAAUACIAAwAAAAAAAAAUACMAAwAAAAAAAAAUACEAAwAAAAAAAAAKACwAAwAAAAAAAAAUACwAAwAAAAAAAAA=")
 tile_set = SubResource("TileSet_1llr8")
 
-[node name="bg" type="Sprite2D" parent="Control3"]
-visible = false
-modulate = Color(0.164706, 0.419608, 0.298039, 1)
-position = Vector2(161.334, 90.7372)
-scale = Vector2(20.1667, 12.5609)
-texture = ExtResource("1_568tc")
+[node name="TextureRect" type="TextureRect" parent="Control3"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_jxcoy")
 
-[node name="lightnin" type="Sprite2D" parent="Control3"]
-position = Vector2(130, 43)
-texture = ExtResource("3_lnk8x")
-
-[node name="lightnin2" type="Sprite2D" parent="Control3"]
-position = Vector2(194, 43)
-texture = ExtResource("3_lnk8x")
+[node name="TextureRect2" type="TextureRect" parent="Control3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 3.52789
+anchor_top = 0.853391
+anchor_right = 4.52789
+anchor_bottom = 1.85339
+offset_left = 0.239395
+offset_top = -14.8423
+offset_right = 0.239395
+offset_bottom = -14.8423
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_w8c5r")
+stretch_mode = 2
 
 [node name="Label" type="Label" parent="Control3"]
 layout_mode = 0
-offset_left = 147.0
-offset_top = 39.0
-offset_right = 207.0
-offset_bottom = 62.0
+offset_left = 146.05
+offset_top = 24.1577
+offset_right = 206.05
+offset_bottom = 47.1577
+theme_override_colors/font_color = Color(0.811765, 0.666667, 0.12549, 1)
 theme_override_fonts/font = ExtResource("4_x66ne")
 theme_override_font_sizes/font_size = 8
 text = "Menu"
 
 [node name="Levels" type="Control" parent="Control3"]
 layout_mode = 1
-anchor_left = 3.8
-anchor_top = 1.625
-anchor_right = 4.8
-anchor_bottom = 2.625
+anchor_left = 3.65662
+anchor_top = 1.17095
+anchor_right = 4.65662
+anchor_bottom = 2.17095
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -463,253 +333,75 @@ metadata/_edit_use_anchors_ = true
 [node name="GridContainer" type="GridContainer" parent="Control3/Levels"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.95
-anchor_right = 1.95
-anchor_bottom = 1.0
+anchor_left = -1.25968
+anchor_top = 0.195245
+anchor_right = 2.09032
+anchor_bottom = 1.84524
 grow_horizontal = 2
 grow_vertical = 2
 columns = 6
 metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="Button" parent="Control3/Levels/GridContainer" node_paths=PackedStringArray("labelComponent", "anim")]
-self_modulate = Color(1, 1, 1, 0)
+[node name="Button" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
+custom_minimum_size = Vector2(19, 19)
 layout_mode = 2
-text = " "
-script = ExtResource("5_2nt4w")
-labelComponent = NodePath("Label")
-level = 1
-anim = NodePath("AnimationPlayer")
 
-[node name="Button" type="TextureRect" parent="Control3/Levels/GridContainer/Button"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.277778
-anchor_top = 0.264706
-anchor_right = 0.722222
-anchor_bottom = 0.735294
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_vyhd4")
-
-[node name="Label" type="Label" parent="Control3/Levels/GridContainer/Button"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -13.5
-offset_top = -5.5
-offset_right = 11.5
-offset_bottom = 5.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_x66ne")
-theme_override_font_sizes/font_size = 8
-text = "1"
-horizontal_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control3/Levels/GridContainer/Button"]
-libraries = {
-&"": SubResource("AnimationLibrary_1kykq")
-}
-autoplay = "Default"
-
-[node name="Lightning" type="TextureRect" parent="Control3/Levels/GridContainer/Button"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -26.5
-offset_top = -9.5
-offset_right = -10.5
-offset_bottom = 6.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_lnk8x")
-
-[node name="Outline" type="TextureRect" parent="Control3/Levels/GridContainer/Button"]
-visible = false
-modulate = Color(0.6, 0.21, 0.15, 1)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -8.49969
-offset_top = -5.5
-offset_right = 7.50031
-offset_bottom = 10.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("9_1kykq")
-
-[node name="Button2" type="Button" parent="Control3/Levels/GridContainer" node_paths=PackedStringArray("labelComponent", "anim")]
-self_modulate = Color(1, 1, 1, 0)
+[node name="Button2" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
+custom_minimum_size = Vector2(19, 19)
 layout_mode = 2
-text = " "
-script = ExtResource("5_2nt4w")
-labelComponent = NodePath("Label")
 level = 2
-anim = NodePath("AnimationPlayer")
 
-[node name="Button" type="TextureRect" parent="Control3/Levels/GridContainer/Button2"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.277778
-anchor_top = 0.264706
-anchor_right = 0.722222
-anchor_bottom = 0.735294
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_vyhd4")
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="Control3/Levels/GridContainer/Button2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -13.5
-offset_top = -5.5
-offset_right = 11.5
-offset_bottom = 5.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_x66ne")
-theme_override_font_sizes/font_size = 8
-text = "0"
-horizontal_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control3/Levels/GridContainer/Button2"]
-libraries = {
-&"": SubResource("AnimationLibrary_1kykq")
-}
-autoplay = "Default"
-
-[node name="Lightning" type="TextureRect" parent="Control3/Levels/GridContainer/Button2"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -26.5
-offset_top = -9.5
-offset_right = -10.5
-offset_bottom = 6.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_lnk8x")
-
-[node name="Outline" type="TextureRect" parent="Control3/Levels/GridContainer/Button2"]
-visible = false
-modulate = Color(0.6, 0.21, 0.15, 1)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -8.49969
-offset_top = -5.5
-offset_right = 7.50031
-offset_bottom = 10.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("9_1kykq")
-
-[node name="Button3" type="Button" parent="Control3/Levels/GridContainer" node_paths=PackedStringArray("labelComponent", "anim")]
-self_modulate = Color(1, 1, 1, 0)
+[node name="Button3" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
+custom_minimum_size = Vector2(19, 19)
 layout_mode = 2
-text = " "
-script = ExtResource("5_2nt4w")
-labelComponent = NodePath("Label")
 level = 3
-anim = NodePath("AnimationPlayer")
 
-[node name="Button" type="TextureRect" parent="Control3/Levels/GridContainer/Button3"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.277778
-anchor_top = 0.264706
-anchor_right = 0.722222
-anchor_bottom = 0.735294
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_vyhd4")
-metadata/_edit_use_anchors_ = true
+[node name="Button4" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
+custom_minimum_size = Vector2(19, 19)
+layout_mode = 2
+level = 4
 
-[node name="Label" type="Label" parent="Control3/Levels/GridContainer/Button3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -13.5
-offset_top = -5.5
-offset_right = 11.5
-offset_bottom = 5.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_x66ne")
-theme_override_font_sizes/font_size = 8
-text = "0"
-horizontal_alignment = 1
+[node name="Button5" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
+custom_minimum_size = Vector2(19, 19)
+layout_mode = 2
+level = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control3/Levels/GridContainer/Button3"]
-libraries = {
-&"": SubResource("AnimationLibrary_1kykq")
-}
-autoplay = "Default"
+[node name="Button6" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
+custom_minimum_size = Vector2(19, 19)
+layout_mode = 2
+level = 6
 
-[node name="Lightning" type="TextureRect" parent="Control3/Levels/GridContainer/Button3"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -26.5
-offset_top = -9.5
-offset_right = -10.5
-offset_bottom = 6.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_lnk8x")
+[node name="Button7" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
+custom_minimum_size = Vector2(19, 19)
+layout_mode = 2
+level = 7
 
-[node name="Outline" type="TextureRect" parent="Control3/Levels/GridContainer/Button3"]
-visible = false
-modulate = Color(0.6, 0.21, 0.15, 1)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -8.49969
-offset_top = -5.5
-offset_right = 7.50031
-offset_bottom = 10.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("9_1kykq")
+[node name="Button8" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
+custom_minimum_size = Vector2(19, 19)
+layout_mode = 2
+
+[node name="Button9" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
+custom_minimum_size = Vector2(19, 19)
+layout_mode = 2
+
+[node name="Button10" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
+custom_minimum_size = Vector2(19, 19)
+layout_mode = 2
+
+[node name="Button11" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
+custom_minimum_size = Vector2(19, 19)
+layout_mode = 2
+
+[node name="Button12" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
+custom_minimum_size = Vector2(19, 19)
+layout_mode = 2
 
 [node name="Quit" type="Button" parent="Control3" node_paths=PackedStringArray("anim")]
 layout_mode = 0
 offset_left = 159.0
-offset_top = 140.0
+offset_top = 147.691
 offset_right = 167.0
-offset_bottom = 148.0
+offset_bottom = 155.691
 script = ExtResource("10_dp7t0")
 anim = NodePath("AnimationPlayer")
 
@@ -731,12 +423,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -12.0
-offset_top = -5.0
-offset_right = 13.0
-offset_bottom = 6.0
+offset_left = -13.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.494254, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_x66ne")
 theme_override_font_sizes/font_size = 8
 text = "Quit"
@@ -760,24 +453,24 @@ texture = ExtResource("3_lnk8x")
 
 [node name="Outline" type="TextureRect" parent="Control3/Quit"]
 visible = false
-modulate = Color(0.6, 0.21, 0.15, 1)
+modulate = Color(0.811765, 0.666667, 0.12549, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -8.49969
-offset_top = -5.5
-offset_right = 7.50031
-offset_bottom = 10.5
+offset_left = -16.2757
+offset_top = -7.14328
+offset_right = 15.7243
+offset_bottom = 11.8567
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("9_1kykq")
+texture = ExtResource("13_1llr8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control3/Quit"]
 libraries = {
-&"": SubResource("AnimationLibrary_w8c5r")
+&"": SubResource("AnimationLibrary_1llr8")
 }
 autoplay = "Default"
 
