@@ -7,13 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://cwkfafgly8mj3" path="res://newart/Wall tiles-Sheet.png" id="3_jxcoy"]
 [ext_resource type="Texture2D" uid="uid://bwtoas72u4ujw" path="res://MyArt/lightyellow.png" id="3_lnk8x"]
 [ext_resource type="FontFile" uid="uid://cuaqhgl3k5vti" path="res://fonts/PixelOperator8.ttf" id="4_x66ne"]
-[ext_resource type="Script" uid="uid://b5vefqraehxq6" path="res://UIScenes/GameLevelButton.gd" id="5_2nt4w"]
+[ext_resource type="Script" uid="uid://b5vefqraehxq6" path="res://Scripts/GameLevelButton.gd" id="5_2nt4w"]
 [ext_resource type="Texture2D" uid="uid://bd2lacl3wul0j" path="res://MyArt/Buttons/Button32by16.png" id="5_vyhd4"]
 [ext_resource type="Texture2D" uid="uid://nm33xavwa7bf" path="res://MyArt/Buttons/ButtonDown32by16.png" id="7_1kykq"]
 [ext_resource type="Texture2D" uid="uid://by2y43bdykuxn" path="res://MyArt/Buttons/BetterButtonDOwn16b16.png" id="7_o2ujc"]
 [ext_resource type="Texture2D" uid="uid://evjodka40y5p" path="res://MyArt/Buttons/BetterButtonUP16b16.png" id="8_xfw0t"]
 [ext_resource type="Texture2D" uid="uid://cbsdeumqfmbjy" path="res://MyArt/Buttons/ButtonUnderline.png" id="9_1kykq"]
-[ext_resource type="Script" uid="uid://b3ge1oi47068i" path="res://UIScenes/QuitButton.gd" id="10_dp7t0"]
+[ext_resource type="Script" uid="uid://b3ge1oi47068i" path="res://Scripts/QuitButton.gd" id="10_dp7t0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jxcoy"]
 texture = ExtResource("2_w8c5r")
@@ -156,33 +156,6 @@ tracks/2/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_1kykq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Button:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_vyhd4")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-7, 12)]
-}
-
 [sub_resource type="Animation" id="Animation_dp7t0"]
 resource_name = "Hover"
 length = 0.5
@@ -224,6 +197,33 @@ tracks/2/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_1kykq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_vyhd4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, 12)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1kykq"]
 _data = {
 &"ButtonDown": SubResource("Animation_xfw0t"),
@@ -232,43 +232,43 @@ _data = {
 &"RESET": SubResource("Animation_1kykq")
 }
 
-[sub_resource type="Animation" id="Animation_2nt4w"]
-resource_name = "Hover"
+[sub_resource type="Animation" id="Animation_jxcoy"]
+resource_name = "Pressed"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Outline:visible")
+tracks/0/path = NodePath("Button:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [ExtResource("7_1kykq")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Button:texture")
+tracks/1/path = NodePath("Label:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_vyhd4")]
+"update": 0,
+"values": [Vector2(-8, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Label:position")
+tracks/2/path = NodePath("Outline:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-8, -1)]
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_w8c5r"]
@@ -310,43 +310,43 @@ tracks/2/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_jxcoy"]
-resource_name = "Pressed"
+[sub_resource type="Animation" id="Animation_2nt4w"]
+resource_name = "Hover"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Button:texture")
+tracks/0/path = NodePath("Outline:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_1kykq")]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Label:position")
+tracks/1/path = NodePath("Button:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-8, 1)]
+"update": 1,
+"values": [ExtResource("5_vyhd4")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Outline:visible")
+tracks/2/path = NodePath("Label:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Vector2(-8, -1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w8c5r"]
@@ -499,9 +499,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -13.5
-offset_top = -3.5
+offset_top = -5.5
 offset_right = 11.5
-offset_bottom = 7.5
+offset_bottom = 5.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_x66ne")
@@ -576,9 +576,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -13.5
-offset_top = -3.5
+offset_top = -5.5
 offset_right = 11.5
-offset_bottom = 7.5
+offset_bottom = 5.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_x66ne")
@@ -609,6 +609,84 @@ grow_vertical = 2
 texture = ExtResource("3_lnk8x")
 
 [node name="Outline" type="TextureRect" parent="Control3/Levels/GridContainer/Button2"]
+visible = false
+modulate = Color(0.6, 0.21, 0.15, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.49969
+offset_top = -5.5
+offset_right = 7.50031
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_1kykq")
+
+[node name="Button3" type="Button" parent="Control3/Levels/GridContainer" node_paths=PackedStringArray("labelComponent", "anim")]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+text = " "
+script = ExtResource("5_2nt4w")
+labelComponent = NodePath("Label")
+level = 3
+anim = NodePath("AnimationPlayer")
+
+[node name="Button" type="TextureRect" parent="Control3/Levels/GridContainer/Button3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.277778
+anchor_top = 0.264706
+anchor_right = 0.722222
+anchor_bottom = 0.735294
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_vyhd4")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Control3/Levels/GridContainer/Button3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.5
+offset_top = -5.5
+offset_right = 11.5
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_x66ne")
+theme_override_font_sizes/font_size = 8
+text = "0"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control3/Levels/GridContainer/Button3"]
+libraries = {
+&"": SubResource("AnimationLibrary_1kykq")
+}
+autoplay = "Default"
+
+[node name="Lightning" type="TextureRect" parent="Control3/Levels/GridContainer/Button3"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -9.5
+offset_right = -10.5
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_lnk8x")
+
+[node name="Outline" type="TextureRect" parent="Control3/Levels/GridContainer/Button3"]
 visible = false
 modulate = Color(0.6, 0.21, 0.15, 1)
 layout_mode = 1

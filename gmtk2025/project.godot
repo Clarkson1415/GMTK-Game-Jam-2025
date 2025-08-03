@@ -22,6 +22,7 @@ WireColours="*res://Scripts/Globals/WireColours.gd"
 GameSounds="*res://Scripts/Globals/GameSounds.gd"
 GameSettings="*res://Scripts/Globals/GameSettings.gd"
 EscapeUi="*res://UIScenes/EscapeUI.tscn"
+WinConditions="*res://Scripts/Globals/WinConditions.gd"
 
 [display]
 

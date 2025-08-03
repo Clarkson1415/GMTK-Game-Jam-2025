@@ -9,8 +9,3 @@ func _ready() -> void:
 		if node is Camera2D:
 			scale = node.zoom
 			return
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

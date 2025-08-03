@@ -4,10 +4,13 @@ extends Node2D
 class_name PowerTerminal
 
 @export var yellowPowerIcon: Sprite2D
-@export var area2ds: Array[PowerableArea]
+@export var area2ds: Array[PowerableAreaVisible]
 @export var sparksAnimationPlayer: PowerAnimations
 
 var isPowered = false
+
+func IsTerminalPowered():
+	return isPowered
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

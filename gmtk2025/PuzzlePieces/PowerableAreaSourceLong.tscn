@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://wdgmwqblv1mt"]
 
-[ext_resource type="PackedScene" uid="uid://bdq6a7ha1vc63" path="res://PowerableAreaTemplate.tscn" id="1_js7wl"]
+[ext_resource type="PackedScene" uid="uid://bdq6a7ha1vc63" path="res://PuzzlePieces/PowerableAreaVisibleTemplate.tscn" id="1_js7wl"]
 [ext_resource type="Texture2D" uid="uid://bqkn5r5mgxw3b" path="res://MyArt/wireV.png" id="2_42bok"]
 [ext_resource type="Texture2D" uid="uid://q1vfl1pc77x1" path="res://MyArt/LongYellowOutline.png" id="3_65ipj"]
 [ext_resource type="Texture2D" uid="uid://bxkbfds51pijm" path="res://MyArt/PowerSourceWire.png" id="4_iqvuk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js7wl"]
-size = Vector2(4, 27)
+size = Vector2(4, 18)
 
-[node name="LongWirePowerSource" instance=ExtResource("1_js7wl")]
+[node name="LongWire" instance=ExtResource("1_js7wl")]
 isPowerSource = true
 
 [node name="Wire" parent="." index="0"]
@@ -24,5 +24,5 @@ position = Vector2(0, 8)
 texture = ExtResource("4_iqvuk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-position = Vector2(0, 4.5)
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_js7wl")

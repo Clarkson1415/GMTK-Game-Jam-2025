@@ -1,16 +1,17 @@
-[gd_scene load_steps=20 format=4 uid="uid://d02qxed4aguu"]
+[gd_scene load_steps=21 format=4 uid="uid://d02qxed4aguu"]
 
 [ext_resource type="Texture2D" uid="uid://b8qqlloj53og6" path="res://newart/Bright walls tilemap.png" id="1_1oiua"]
+[ext_resource type="Script" uid="uid://chhker38tu7rl" path="res://GameScenes/LevelInitialiser.gd" id="1_ialxh"]
 [ext_resource type="Texture2D" uid="uid://ch048h7py7b1x" path="res://newart/Floor tiles-Sheet.png" id="2_ialxh"]
 [ext_resource type="Texture2D" uid="uid://rke1qgx10wfv" path="res://newart/Stone walls tilemap.png" id="3_2i53h"]
 [ext_resource type="Texture2D" uid="uid://bt3t4xs576ys4" path="res://newart/Topdown shadows-Sheet.png" id="4_im0hx"]
 [ext_resource type="Texture2D" uid="uid://cwkfafgly8mj3" path="res://newart/Wall tiles-Sheet.png" id="5_qih1h"]
 [ext_resource type="Texture2D" uid="uid://bmf61vcsqoom2" path="res://neo_zero_V1.0/neo_zero_tiles_and_buildings_01.png" id="6_t4ogr"]
-[ext_resource type="PackedScene" uid="uid://d0ouopba3y5qf" path="res://Cables/draggable_cable_straight.tscn" id="7_mdgxk"]
-[ext_resource type="PackedScene" uid="uid://pgadu71vgj34" path="res://PowerableAreaHalf.tscn" id="8_0swbh"]
-[ext_resource type="PackedScene" uid="uid://bjmah8tuplohf" path="res://PowerSourceBlock.tscn" id="10_tsauq"]
-[ext_resource type="PackedScene" uid="uid://wdgmwqblv1mt" path="res://PowerableAreaSourceLong.tscn" id="11_fjmxi"]
-[ext_resource type="PackedScene" uid="uid://5rfy1kin8dar" path="res://PowerTerminalBlock.tscn" id="12_a5lji"]
+[ext_resource type="PackedScene" uid="uid://d0ouopba3y5qf" path="res://PuzzlePieces/Cables/DraggableCableTemplate.tscn" id="7_mdgxk"]
+[ext_resource type="PackedScene" uid="uid://pgadu71vgj34" path="res://PuzzlePieces/PowerableAreaHalf.tscn" id="8_0swbh"]
+[ext_resource type="PackedScene" uid="uid://bjmah8tuplohf" path="res://PuzzlePieces/PowerSourceBlock.tscn" id="10_tsauq"]
+[ext_resource type="PackedScene" uid="uid://wdgmwqblv1mt" path="res://PuzzlePieces/PowerableAreaSourceLong.tscn" id="11_fjmxi"]
+[ext_resource type="PackedScene" uid="uid://5rfy1kin8dar" path="res://PuzzlePieces/PowerTerminalBlock.tscn" id="12_a5lji"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lc2xo"]
 texture = ExtResource("1_1oiua")
@@ -349,6 +350,7 @@ texture = ExtResource("6_t4ogr")
 sources/0 = SubResource("TileSetAtlasSource_hve3p")
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_ialxh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-8, 7)

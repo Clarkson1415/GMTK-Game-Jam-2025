@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://d0ouopba3y5qf"]
 
-[ext_resource type="Script" uid="uid://kxqhb8pcgjvx" path="res://Scripts/DraggableObject.gd" id="1_t2la6"]
-[ext_resource type="Texture2D" uid="uid://cmk6oi2n20m1p" path="res://MyArt/highlight.png" id="4_6y1jc"]
+[ext_resource type="Script" uid="uid://kxqhb8pcgjvx" path="res://Scripts/DraggableObject.gd" id="1_xls65"]
+[ext_resource type="Texture2D" uid="uid://cmk6oi2n20m1p" path="res://MyArt/highlight.png" id="2_6pisg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vef74"]
 size = Vector2(10, 10)
 
 [node name="DraggableCableStraight" type="Node2D" node_paths=PackedStringArray("areaForDragDetection", "highlightSprite", "areaCollisionShape")]
-script = ExtResource("1_t2la6")
+script = ExtResource("1_xls65")
 areaForDragDetection = NodePath("dragable")
 highlightSprite = NodePath("highlight")
 areaCollisionShape = NodePath("dragable/CollisionShape2D")
@@ -20,4 +20,4 @@ shape = SubResource("RectangleShape2D_vef74")
 [node name="highlight" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.352941)
-texture = ExtResource("4_6y1jc")
+texture = ExtResource("2_6pisg")

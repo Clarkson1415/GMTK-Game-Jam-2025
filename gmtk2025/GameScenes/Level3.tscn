@@ -1,22 +1,20 @@
-[gd_scene load_steps=45 format=4 uid="uid://hnltp074h12i"]
+[gd_scene load_steps=21 format=4 uid="uid://f1kv0ibyqlp"]
 
-[ext_resource type="Texture2D" uid="uid://b8qqlloj53og6" path="res://newart/Bright walls tilemap.png" id="1_865eg"]
-[ext_resource type="Script" uid="uid://chhker38tu7rl" path="res://GameScenes/LevelInitialiser.gd" id="1_t7c3u"]
-[ext_resource type="Texture2D" uid="uid://ch048h7py7b1x" path="res://newart/Floor tiles-Sheet.png" id="2_ihli8"]
-[ext_resource type="Texture2D" uid="uid://rke1qgx10wfv" path="res://newart/Stone walls tilemap.png" id="3_t7c3u"]
-[ext_resource type="Texture2D" uid="uid://bt3t4xs576ys4" path="res://newart/Topdown shadows-Sheet.png" id="4_qnju4"]
-[ext_resource type="Texture2D" uid="uid://cwkfafgly8mj3" path="res://newart/Wall tiles-Sheet.png" id="5_lnuov"]
-[ext_resource type="Texture2D" uid="uid://bmf61vcsqoom2" path="res://neo_zero_V1.0/neo_zero_tiles_and_buildings_01.png" id="6_8rj3t"]
-[ext_resource type="PackedScene" uid="uid://d0ouopba3y5qf" path="res://PuzzlePieces/Cables/DraggableCableTemplate.tscn" id="7_jx75q"]
-[ext_resource type="PackedScene" uid="uid://pgadu71vgj34" path="res://PuzzlePieces/PowerableAreaHalf.tscn" id="8_aeup6"]
-[ext_resource type="Texture2D" uid="uid://d4lpjtbutmdr5" path="res://Pixel Art Sign Pack - Animated/Pixel Art Sign Pack - Animated/Sign 1/Sign 1 Glow - OPEN.png" id="9_gic55"]
-[ext_resource type="PackedScene" uid="uid://bjmah8tuplohf" path="res://PuzzlePieces/PowerSourceBlock.tscn" id="10_nyvv0"]
-[ext_resource type="PackedScene" uid="uid://wdgmwqblv1mt" path="res://PuzzlePieces/PowerableAreaSourceLong.tscn" id="11_vfyw1"]
-[ext_resource type="PackedScene" uid="uid://5rfy1kin8dar" path="res://PuzzlePieces/PowerTerminalBlock.tscn" id="12_abf8r"]
-[ext_resource type="Script" uid="uid://bsf3bvsl06i0r" path="res://Scripts/PowerableArea/PowerableArea.gd" id="13_ihli8"]
+[ext_resource type="Texture2D" uid="uid://b8qqlloj53og6" path="res://newart/Bright walls tilemap.png" id="1_nd6n0"]
+[ext_resource type="Script" uid="uid://chhker38tu7rl" path="res://GameScenes/LevelInitialiser.gd" id="1_vl73f"]
+[ext_resource type="Texture2D" uid="uid://ch048h7py7b1x" path="res://newart/Floor tiles-Sheet.png" id="2_vl73f"]
+[ext_resource type="Texture2D" uid="uid://rke1qgx10wfv" path="res://newart/Stone walls tilemap.png" id="3_x64o5"]
+[ext_resource type="Texture2D" uid="uid://bt3t4xs576ys4" path="res://newart/Topdown shadows-Sheet.png" id="4_bxgpm"]
+[ext_resource type="Texture2D" uid="uid://cwkfafgly8mj3" path="res://newart/Wall tiles-Sheet.png" id="5_natyy"]
+[ext_resource type="Texture2D" uid="uid://bmf61vcsqoom2" path="res://neo_zero_V1.0/neo_zero_tiles_and_buildings_01.png" id="6_vxffd"]
+[ext_resource type="PackedScene" uid="uid://d0ouopba3y5qf" path="res://PuzzlePieces/Cables/DraggableCableTemplate.tscn" id="7_xa1yo"]
+[ext_resource type="PackedScene" uid="uid://dno8abwxq52bu" path="res://PuzzlePieces/PowerableAreaHalfForCornerPieces.tscn" id="8_iluu6"]
+[ext_resource type="PackedScene" uid="uid://bjmah8tuplohf" path="res://PuzzlePieces/PowerSourceBlock.tscn" id="10_c127t"]
+[ext_resource type="PackedScene" uid="uid://wdgmwqblv1mt" path="res://PuzzlePieces/PowerableAreaSourceLong.tscn" id="11_shvhr"]
+[ext_resource type="PackedScene" uid="uid://5rfy1kin8dar" path="res://PuzzlePieces/PowerTerminalBlock.tscn" id="12_65bkl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lc2xo"]
-texture = ExtResource("1_865eg")
+texture = ExtResource("1_nd6n0")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -68,7 +66,7 @@ texture = ExtResource("1_865eg")
 6:6/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_215e1"]
-texture = ExtResource("2_ihli8")
+texture = ExtResource("2_vl73f")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -82,7 +80,7 @@ texture = ExtResource("2_ihli8")
 10:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7sc4i"]
-texture = ExtResource("3_t7c3u")
+texture = ExtResource("3_x64o5")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -147,7 +145,7 @@ texture = ExtResource("3_t7c3u")
 6:6/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_80cx4"]
-texture = ExtResource("4_qnju4")
+texture = ExtResource("4_bxgpm")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -160,7 +158,7 @@ texture = ExtResource("4_qnju4")
 9:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e8heu"]
-texture = ExtResource("5_lnuov")
+texture = ExtResource("5_natyy")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -179,7 +177,7 @@ sources/3 = SubResource("TileSetAtlasSource_80cx4")
 sources/4 = SubResource("TileSetAtlasSource_e8heu")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hve3p"]
-texture = ExtResource("6_8rj3t")
+texture = ExtResource("6_vxffd")
 3:1/0 = 0
 4:1/0 = 0
 5:1/0 = 0
@@ -351,154 +349,8 @@ texture = ExtResource("6_8rj3t")
 [sub_resource type="TileSet" id="TileSet_mfdv2"]
 sources/0 = SubResource("TileSetAtlasSource_hve3p")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mfdv2"]
-atlas = ExtResource("9_gic55")
-region = Rect2(0, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iotsf"]
-atlas = ExtResource("9_gic55")
-region = Rect2(31, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lc2xo"]
-atlas = ExtResource("9_gic55")
-region = Rect2(62, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_215e1"]
-atlas = ExtResource("9_gic55")
-region = Rect2(93, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7sc4i"]
-atlas = ExtResource("9_gic55")
-region = Rect2(124, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_80cx4"]
-atlas = ExtResource("9_gic55")
-region = Rect2(155, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e8heu"]
-atlas = ExtResource("9_gic55")
-region = Rect2(186, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rvswv"]
-atlas = ExtResource("9_gic55")
-region = Rect2(217, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_boyg6"]
-atlas = ExtResource("9_gic55")
-region = Rect2(248, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e36ub"]
-atlas = ExtResource("9_gic55")
-region = Rect2(279, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hb5m1"]
-atlas = ExtResource("9_gic55")
-region = Rect2(310, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x5p1p"]
-atlas = ExtResource("9_gic55")
-region = Rect2(341, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qhcbd"]
-atlas = ExtResource("9_gic55")
-region = Rect2(372, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1jbl"]
-atlas = ExtResource("9_gic55")
-region = Rect2(403, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vaj68"]
-atlas = ExtResource("9_gic55")
-region = Rect2(434, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i2p71"]
-atlas = ExtResource("9_gic55")
-region = Rect2(465, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xa8c5"]
-atlas = ExtResource("9_gic55")
-region = Rect2(496, 0, 31, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5b14r"]
-atlas = ExtResource("9_gic55")
-region = Rect2(527, 0, 31, 24)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_iotsf"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mfdv2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iotsf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lc2xo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_215e1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7sc4i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_80cx4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e8heu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rvswv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_boyg6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e36ub")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hb5m1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x5p1p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qhcbd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f1jbl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vaj68")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i2p71")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xa8c5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5b14r")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
-
-[sub_resource type="Gradient" id="Gradient_hve3p"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_mfdv2"]
-gradient = SubResource("Gradient_hve3p")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.388889, 0.594017)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7c3u"]
-size = Vector2(4, 12)
-
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_t7c3u")
+script = ExtResource("1_vl73f")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-8, 7)
@@ -517,97 +369,30 @@ visible = false
 tile_map_data = PackedByteArray("AAAJAP7/AAAGABAAAAAJAP//AAAGABEAAAAKAP7/AAAHABAAAAAKAP//AAAHABEAAAALAP7/AAAHABAAAAALAP//AAAHABEAAAAMAP7/AAAIABIAAAAMAP//AAAIABMAAAANAP7/AAAHABAAAAANAP//AAAHABEAAAAOAP7/AAAPABIAAAAPAP7/AAAQABIAAAAQAP7/AAARABIAAAARAP7/AAAPAA4AAAASAP7/AAAQAA4AAAATAP7/AAARAA4AAAAOAP//AAAPABMAAAAPAP//AAAQABMAAAAQAP//AAAJABEAAAARAP//AAAPAA8AAAASAP//AAAQAA8AAAATAP//AAARAA8AAAATAP3/AAAKAA0AAAASAP3/AAAKAA0AAAARAP3/AAAKAA0AAAAQAP3/AAAKAA0AAAAPAP3/AAAKAA0AAAAOAP3/AAAKAA0AAAANAP3/AAAKAA0AAAAMAP3/AAAKAA0AAAALAP3/AAAKAA0AAAAKAP3/AAAKAA0AAAAJAP3/AAAKAA0AAAA=")
 tile_set = SubResource("TileSet_mfdv2")
 
-[node name="Wire2" parent="." instance=ExtResource("7_jx75q")]
-position = Vector2(-48, 16)
+[node name="CornerWire" parent="." instance=ExtResource("7_xa1yo")]
+position = Vector2(-64, 32)
 
-[node name="HalfPowerableArea" parent="Wire2" instance=ExtResource("8_aeup6")]
+[node name="HalfPowerableArea" parent="CornerWire" instance=ExtResource("8_iluu6")]
 thisColour = 1
 
-[node name="HalfPowerableArea2" parent="Wire2" instance=ExtResource("8_aeup6")]
-position = Vector2(0, -8)
+[node name="HalfPowerableArea2" parent="CornerWire" instance=ExtResource("8_iluu6")]
+rotation = -1.57079
+scale = Vector2(-1, 1)
 thisColour = 1
 
-[node name="Wire3" parent="." instance=ExtResource("7_jx75q")]
-position = Vector2(-32, 16)
+[node name="PowerSourceBlock" parent="." instance=ExtResource("10_c127t")]
+position = Vector2(48, 32)
 
-[node name="HalfPowerableArea" parent="Wire3" instance=ExtResource("8_aeup6")]
-
-[node name="HalfPowerableArea2" parent="Wire3" instance=ExtResource("8_aeup6")]
-position = Vector2(0, -8)
-
-[node name="Wire4" parent="." instance=ExtResource("7_jx75q")]
-position = Vector2(-16, 16)
-
-[node name="HalfPowerableArea" parent="Wire4" instance=ExtResource("8_aeup6")]
-
-[node name="HalfPowerableArea2" parent="Wire4" instance=ExtResource("8_aeup6")]
-position = Vector2(0, -8)
-
-[node name="Light" type="Node2D" parent="."]
-visible = false
-position = Vector2(0, -40)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Light"]
-position = Vector2(-9.6, 6.39999)
-sprite_frames = SubResource("SpriteFrames_iotsf")
-autoplay = "default"
-frame_progress = 0.211564
-
-[node name="PointLight2D" type="PointLight2D" parent="Light"]
-position = Vector2(-9.6, 6.39999)
-color = Color(0.189673, 0.726932, 0.609679, 1)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_mfdv2")
-texture_scale = 3.45
-
-[node name="PowerSourceBlock" parent="." instance=ExtResource("10_nyvv0")]
-position = Vector2(32, 48)
-
-[node name="LongWirePowerSource" parent="PowerSourceBlock" instance=ExtResource("11_vfyw1")]
-position = Vector2(0, -8)
-rotation = 3.14159
-thisColour = 1
-
-[node name="powerTerminal" parent="." node_paths=PackedStringArray("area2ds") instance=ExtResource("12_abf8r")]
-position = Vector2(32, -16)
-area2ds = [NodePath("LongWire"), NodePath("LongWirePowerSource2")]
-
-[node name="LongWire" parent="powerTerminal" instance=ExtResource("11_vfyw1")]
+[node name="LongWirePowerSource" parent="PowerSourceBlock" instance=ExtResource("11_shvhr")]
 position = Vector2(-8, 0)
-rotation = 1.57079
-isPowerSource = false
+rotation = 1.5708
+thisColour = 1
 
-[node name="PowerableArea" type="Area2D" parent="powerTerminal"]
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("13_ihli8")
-metadata/_custom_type_script = "uid://bsf3bvsl06i0r"
+[node name="powerTerminal" parent="." node_paths=PackedStringArray("area2ds") instance=ExtResource("12_65bkl")]
+position = Vector2(16, 0)
+area2ds = [NodePath("LongWirePowerSource2")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="powerTerminal/PowerableArea"]
-position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_t7c3u")
-
-[node name="LongWirePowerSource2" parent="powerTerminal" instance=ExtResource("11_vfyw1")]
+[node name="LongWirePowerSource2" parent="powerTerminal" instance=ExtResource("11_shvhr")]
 position = Vector2(0, 8)
 thisColour = 1
-isPowerSource = false
-
-[node name="PowerableArea2" type="Area2D" parent="powerTerminal"]
-rotation = 1.57079
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("13_ihli8")
-metadata/_custom_type_script = "uid://bsf3bvsl06i0r"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="powerTerminal/PowerableArea2"]
-position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_t7c3u")
-
-[node name="powerTerminal2" parent="." node_paths=PackedStringArray("area2ds") instance=ExtResource("12_abf8r")]
-position = Vector2(-48, -16)
-area2ds = [NodePath("LongWirePowerSource")]
-
-[node name="LongWirePowerSource" parent="powerTerminal2" instance=ExtResource("11_vfyw1")]
-position = Vector2(8, 0)
-rotation = -1.57079
 isPowerSource = false

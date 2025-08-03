@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dno8abwxq52bu"]
+
+[ext_resource type="PackedScene" uid="uid://bdq6a7ha1vc63" path="res://PuzzlePieces/PowerableAreaVisibleTemplate.tscn" id="1_xlv01"]
+[ext_resource type="Texture2D" uid="uid://bdaqsyld3o2rh" path="res://MyArt/HalfOutlineYellowForCornerWireHalf.png" id="2_mutlt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rxug"]
+size = Vector2(4, 12)
+
+[node name="HalfPowerableArea" instance=ExtResource("1_xlv01")]
+
+[node name="yellow" parent="." index="1"]
+texture = ExtResource("2_mutlt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_3rxug")
