@@ -24,6 +24,7 @@ GameSettings="*res://Scripts/Globals/GameSettings.gd"
 EscapeUi="*res://UIScenes/EscapeUI.tscn"
 WinConditions="*res://Scripts/Globals/WinConditions.gd"
 GameLevels="*res://GameScenes/GameLevels.gd"
+GameMusic="*res://GameScenes/game_music.tscn"
 
 [display]
 
