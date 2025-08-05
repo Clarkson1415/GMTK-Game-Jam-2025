@@ -3,8 +3,10 @@ extends Node2D
 ## Can drag and rotate.
 class_name DraggableObject
 
+## Added as a sub node for terminals and sources. Which will be dragging the parent.
+@export var dragParent: bool = false
+
 @export var areaForDragDetection: Area2D
-var bodyItsInside: StaticBody2D = null
 @export var rotationTime = 0.2
 
 var initialPos: Vector2
@@ -18,8 +20,6 @@ var rPressed: bool = false
 func _ready() -> void:
 	areaForDragDetection.mouse_entered.connect(onMouseEntered)
 	areaForDragDetection.mouse_exited.connect(onMouseExit)
-	areaForDragDetection.body_entered.connect(onArea2DBodyEntered)
-	areaForDragDetection.body_exited.connect(onArea2DBodyExited)
 	snapToGrid()
 
 func onMouseEntered():
@@ -34,15 +34,6 @@ func onMouseExit():
 		return
 	underCursor = false
 	highlightSprite.visible = false
-
-func onArea2DBodyEntered(body: StaticBody2D):
-	if body.is_in_group("dropable"):
-		bodyItsInside = body
-
-func onArea2DBodyExited(body):
-	# the area to drop on change col to indicate placing on this tile.
-	if body.is_in_group("dropable"):
-		bodyItsInside = null
 
 func _input(_event: InputEvent) -> void:
 	if !underCursor:
@@ -61,6 +52,7 @@ func _input(_event: InputEvent) -> void:
 		print("Drag false")
 		dragging = false
 		GlobalDragging.ToggleDragging(false)
+		highlightSprite.visible = false
 		snapToGrid()
 
 var currentlyRotating: bool = false;
@@ -68,8 +60,8 @@ var currentlyRotating: bool = false;
 func rotateOverTime(duration: float):
 	currentlyRotating = true;
 	var tween = create_tween()
-	var target_rotation = rotation + PI/2
-	tween.tween_property(self, "rotation", target_rotation, duration).set_ease(Tween.EASE_OUT)
+	var target_rotation = getNodeToMove().rotation + PI/2
+	tween.tween_property(getNodeToMove(), "rotation", target_rotation, duration).set_ease(Tween.EASE_OUT)
 	tween.tween_callback(onRotationComplete)
 
 func onRotationComplete():
@@ -79,11 +71,12 @@ func onRotationComplete():
 func _process(_delta: float) -> void:
 	if will_collide(get_global_mouse_position()):
 		return
-		#dragging = false
-		#GlobalDragging.ToggleDragging(false)
-		#snapToGrid()
 	if dragging:
-		global_position = get_global_mouse_position()
+		getNodeToMove().global_position = get_global_mouse_position()
+
+func getNodeToMove():
+	var nodeToDrag = get_parent() if dragParent else self
+	return nodeToDrag
 
 @export var areaCollisionShape: CollisionShape2D
 
@@ -96,4 +89,4 @@ func will_collide(nextPosition: Vector2) -> bool:
 	return result.size() > 0
 
 func snapToGrid():
-	global_position = (global_position / 16).round() * 16
+	getNodeToMove().global_position = (global_position / 16).round() * 16

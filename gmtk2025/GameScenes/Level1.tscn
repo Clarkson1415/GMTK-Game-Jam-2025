@@ -387,11 +387,10 @@ position = Vector2(8, 0)
 rotation = 4.71238
 thisColour = 1
 
-[node name="powerTerminal" parent="." node_paths=PackedStringArray("area2ds") instance=ExtResource("12_a5lji")]
-position = Vector2(16, -16)
+[node name="powerTerminal2" parent="." node_paths=PackedStringArray("area2ds") instance=ExtResource("12_a5lji")]
 area2ds = [NodePath("LongWirePowerSource")]
 
-[node name="LongWirePowerSource" parent="powerTerminal" instance=ExtResource("11_fjmxi")]
+[node name="LongWirePowerSource" parent="powerTerminal2" instance=ExtResource("11_fjmxi")]
 position = Vector2(-8, 0)
 rotation = 1.57079
 thisColour = 1

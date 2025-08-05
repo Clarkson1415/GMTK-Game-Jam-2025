@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cmk6oi2n20m1p" path="res://MyArt/highlight.png" id="2_6pisg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vef74"]
-size = Vector2(10, 10)
+size = Vector2(16, 16)
 
 [node name="DraggableCableStraight" type="Node2D" node_paths=PackedStringArray("areaForDragDetection", "highlightSprite", "areaCollisionShape")]
 script = ExtResource("1_xls65")
