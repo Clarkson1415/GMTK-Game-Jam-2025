@@ -22,8 +22,6 @@ func turnOFF():
 
 ## Overrides base implementation because this has a colour to check.
 func has_path_to_power(visited := {}) -> bool:
-	if self.name == "LongWire":
-		print("ahh")
 	if self in visited:
 		return false
 	visited[self] = true

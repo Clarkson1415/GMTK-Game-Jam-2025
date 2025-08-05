@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GMTK2025"
-run/main_scene="uid://yox804wfwex0"
+run/main_scene="uid://d02qxed4aguu"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -23,6 +23,7 @@ GameSounds="*res://Scripts/Globals/GameSounds.gd"
 GameSettings="*res://Scripts/Globals/GameSettings.gd"
 EscapeUi="*res://UIScenes/EscapeUI.tscn"
 WinConditions="*res://Scripts/Globals/WinConditions.gd"
+GameLevels="*res://GameScenes/GameLevels.gd"
 
 [display]
 

@@ -2,7 +2,7 @@ extends AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GameSettings.LevelChanged.connect(_onLevelChanged)
+	GameLevels.LevelChanged.connect(_onLevelChanged)
 
 func _onLevelChanged():
 	if isOpen:

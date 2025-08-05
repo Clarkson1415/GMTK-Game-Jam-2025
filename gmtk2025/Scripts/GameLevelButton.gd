@@ -9,4 +9,4 @@ func _ready() -> void:
 	labelComponent.text = str(level)
 
 func _protectedAbstractOnPressed():
-	GameSettings.LoadLevel(level)
+	GameLevels.LoadLevel(level)

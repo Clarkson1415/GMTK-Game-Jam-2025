@@ -30,6 +30,8 @@ func onMouseEntered():
 	highlightSprite.visible = true
 
 func onMouseExit():
+	if dragging:
+		return
 	underCursor = false
 	highlightSprite.visible = false
 
@@ -52,9 +54,11 @@ func _input(_event: InputEvent) -> void:
 	if !Input.is_key_pressed(KEY_R):
 		rPressed = false;
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and !GlobalDragging.IsDragging():
+		print("Drag true")
 		dragging = true
 		GlobalDragging.ToggleDragging(true)
-	elif !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and dragging:
+		print("Drag false")
 		dragging = false
 		GlobalDragging.ToggleDragging(false)
 		snapToGrid()
@@ -74,9 +78,10 @@ func onRotationComplete():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if will_collide(get_global_mouse_position()):
-		dragging = false
-		GlobalDragging.ToggleDragging(false)
-		snapToGrid()
+		return
+		#dragging = false
+		#GlobalDragging.ToggleDragging(false)
+		#snapToGrid()
 	if dragging:
 		global_position = get_global_mouse_position()
 
