@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://d02qxed4aguu"]
+[gd_scene load_steps=21 format=4 uid="uid://d02qxed4aguu"]
 
 [ext_resource type="Texture2D" uid="uid://b8qqlloj53og6" path="res://newart/Bright walls tilemap.png" id="1_1oiua"]
 [ext_resource type="Script" uid="uid://chhker38tu7rl" path="res://GameScenes/LevelInitialiser.gd" id="1_ialxh"]
@@ -12,10 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://bjmah8tuplohf" path="res://PuzzlePieces/PowerSourceBlock.tscn" id="10_tsauq"]
 [ext_resource type="PackedScene" uid="uid://wdgmwqblv1mt" path="res://PuzzlePieces/PowerableAreaSourceLong.tscn" id="11_fjmxi"]
 [ext_resource type="PackedScene" uid="uid://5rfy1kin8dar" path="res://PuzzlePieces/PowerTerminalBlock.tscn" id="12_a5lji"]
-[ext_resource type="Script" uid="uid://kxqhb8pcgjvx" path="res://Scripts/DraggableObject.gd" id="13_2i53h"]
-[ext_resource type="Texture2D" uid="uid://cmk6oi2n20m1p" path="res://MyArt/highlight.png" id="14_im0hx"]
-[ext_resource type="Texture2D" uid="uid://xhk4rn5mtbpv" path="res://MyArt/emptyTile.png" id="15_im0hx"]
-[ext_resource type="Texture2D" uid="uid://c2j1goerh4ns1" path="res://MyArt/GreyemptyTile.png" id="16_t4ogr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1oiua"]
 texture = ExtResource("1_1oiua")
@@ -439,15 +435,6 @@ texture = ExtResource("6_t4ogr")
 [sub_resource type="TileSet" id="TileSet_mfdv2"]
 sources/0 = SubResource("TileSetAtlasSource_hve3p")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_im0hx"]
-size = Vector2(30, 10)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qih1h"]
-size = Vector2(29, 10)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdgxk"]
-size = Vector2(14, 30)
-
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_ialxh")
 
@@ -486,31 +473,6 @@ position = Vector2(8, 0)
 rotation = 4.71238
 thisColour = 1
 
-[node name="DraggableObject2" type="Node2D" parent="PowerSourceBlock" node_paths=PackedStringArray("areaForDragDetection", "highlightSprite")]
-script = ExtResource("13_2i53h")
-dragParent = true
-areaForDragDetection = NodePath("Area2D")
-highlightSprite = NodePath("highlight")
-metadata/_custom_type_script = "uid://kxqhb8pcgjvx"
-
-[node name="Area2D" type="Area2D" parent="PowerSourceBlock/DraggableObject2"]
-collision_layer = 2
-collision_mask = 7
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerSourceBlock/DraggableObject2/Area2D"]
-position = Vector2(8, 0)
-shape = SubResource("RectangleShape2D_im0hx")
-
-[node name="highlight" type="Sprite2D" parent="PowerSourceBlock/DraggableObject2"]
-visible = false
-modulate = Color(1, 1, 1, 0.352941)
-texture = ExtResource("14_im0hx")
-
-[node name="highlight2" type="Sprite2D" parent="PowerSourceBlock/DraggableObject2/highlight"]
-modulate = Color(1, 1, 1, 0.352941)
-position = Vector2(16, 0)
-texture = ExtResource("14_im0hx")
-
 [node name="powerTerminal2" parent="." node_paths=PackedStringArray("area2ds") instance=ExtResource("12_a5lji")]
 position = Vector2(33, 16)
 area2ds = [NodePath("LongWirePowerSource")]
@@ -520,64 +482,3 @@ position = Vector2(-8, 0)
 rotation = 1.57079
 thisColour = 1
 isPowerSource = false
-
-[node name="DraggableObject3" type="Node2D" parent="powerTerminal2" node_paths=PackedStringArray("areaForDragDetection", "highlightSprite")]
-script = ExtResource("13_2i53h")
-dragParent = true
-areaForDragDetection = NodePath("../Area2D")
-highlightSprite = NodePath("dragHighlight")
-metadata/_custom_type_script = "uid://kxqhb8pcgjvx"
-
-[node name="dragHighlight" type="Sprite2D" parent="powerTerminal2/DraggableObject3"]
-visible = false
-modulate = Color(1, 1, 1, 0.352941)
-texture = ExtResource("14_im0hx")
-
-[node name="dragHighlight2" type="Sprite2D" parent="powerTerminal2/DraggableObject3/dragHighlight"]
-modulate = Color(1, 1, 1, 0.352941)
-position = Vector2(-16, 0)
-texture = ExtResource("14_im0hx")
-
-[node name="Area2D" type="Area2D" parent="powerTerminal2"]
-collision_layer = 2
-collision_mask = 7
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="powerTerminal2/Area2D"]
-position = Vector2(-8.5, 0)
-shape = SubResource("RectangleShape2D_qih1h")
-
-[node name="DraggableObject" type="Node2D" parent="." node_paths=PackedStringArray("areaForDragDetection", "highlightSprite")]
-position = Vector2(-77, 38)
-script = ExtResource("13_2i53h")
-areaForDragDetection = NodePath("Area2D")
-highlightSprite = NodePath("Sprite2D2")
-metadata/_custom_type_script = "uid://kxqhb8pcgjvx"
-
-[node name="Sprite2D" type="Sprite2D" parent="DraggableObject"]
-visible = false
-texture = ExtResource("16_t4ogr")
-
-[node name="Sprite2D3" type="Sprite2D" parent="DraggableObject"]
-visible = false
-position = Vector2(0, -16)
-texture = ExtResource("16_t4ogr")
-
-[node name="Area2D" type="Area2D" parent="DraggableObject"]
-collision_layer = 2
-collision_mask = 7
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DraggableObject/Area2D"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_mdgxk")
-debug_color = Color(0.0975292, 0.502613, 0.744586, 0.42)
-
-[node name="Sprite2D" type="Sprite2D" parent="DraggableObject/Area2D/CollisionShape2D"]
-visible = false
-modulate = Color(0.921569, 0.415686, 0.886275, 0.301961)
-scale = Vector2(1, 2)
-texture = ExtResource("15_im0hx")
-
-[node name="Sprite2D2" type="Sprite2D" parent="DraggableObject"]
-visible = false
-modulate = Color(1, 1, 1, 0.262745)
-texture = ExtResource("14_im0hx")

@@ -41,7 +41,10 @@ func _input(_event: InputEvent) -> void:
 	var isLeftMouseButtonPressed = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	if !rPressed and Input.is_key_pressed(KEY_R) and !currentlyRotating:
 		print("before rotation angle  = " + str(getNodeToMove().global_rotation))
-		if await will_collide(getNodeToMove().global_position, getNodeToMove().global_rotation + (PI/2)):
+		print("rotation to check  = " + str(getNodeToMove().global_rotation + (PI/2)))
+		var willCollide = await will_collide(getNodeToMove().global_position, getNodeToMove().global_rotation + (PI/2))
+		print("rotation will collide = " + str(willCollide))
+		if !dragging and willCollide:
 			return
 		rPressed = true;
 		GameSounds.PlayRotateSound()
@@ -63,7 +66,7 @@ var currentlyRotating: bool = false;
 func rotateOverTime(duration: float):
 	currentlyRotating = true;
 	var tween = create_tween()
-	var target_rotation = getNodeToMove().global_rotation + PI/2
+	var target_rotation = roundRotation(getNodeToMove().global_rotation) + PI/2
 	tween.tween_property(getNodeToMove(), "global_rotation", target_rotation, duration).set_ease(Tween.EASE_OUT)
 	tween.tween_callback(onRotationComplete)
 
@@ -95,7 +98,7 @@ func getNodeToMove() -> Node2D:
 
 var debug_shapes = []
 
-func willCollideWithWallsFunction(transToChech: Transform2D, nextRotationGlobalRads, nextPosition) -> bool:
+func willCollideWithWallsFunction(transToChech: Transform2D) -> bool:
 	var query = PhysicsShapeQueryParameters2D.new()
 	var areaCollisionShape: CollisionShape2D = getDraggableAreasCollisionShape()
 	query.shape = areaCollisionShape.shape
@@ -137,6 +140,7 @@ func createTransformToCheck(nextPositionGlobal: Vector2, nextRotationGlobalRads:
 	var areasCollisionShape: CollisionShape2D = getDraggableAreasCollisionShape()
 	var shape_offset: Vector2 = areasCollisionShape.position
 	var global_position_to_test = nextPositionGlobal + shape_offset.rotated(nextRotationGlobalRads)
+	print("rotation used in the actual transofrmToCheck = " + str(nextRotationGlobalRads))
 	var transformToCheck = Transform2D(nextRotationGlobalRads, global_position_to_test)
 	# Save debug info for drawing later
 	debug_shapes.clear()
@@ -149,11 +153,13 @@ func createTransformToCheck(nextPositionGlobal: Vector2, nextRotationGlobalRads:
 	queue_redraw()  # Request redraw
 	return transformToCheck
 
-func willCollideWithArea(transformToCheck: Transform2D) -> bool:
+func willCollideWithAreaFunc(transformToCheck: Transform2D) -> bool:
 	var previousPos = areaForDragDetection.global_position
 	var previousRotation = areaForDragDetection.global_rotation
 	PhysicsServer2D.area_set_transform(areaForDragDetection.get_rid(), transformToCheck)
-	await get_tree().process_frame  # Wait one frame to let physics server update
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	# await get_tree().process_frame  # Wait one frame to let physics server update
 	var overlappedAreas = areaForDragDetection.get_overlapping_areas()
 	var overlappedAreaOnMask = overlappedAreas.filter(func(area):
 		return area.collision_layer & areaForDragDetection.collision_mask != 0)
@@ -165,21 +171,29 @@ func willCollideWithArea(transformToCheck: Transform2D) -> bool:
 
 func will_collide(nextPositionGlobal: Vector2, nextRotationGlobalRads: float) -> bool:
 	var transformToCheck = createTransformToCheck(nextPositionGlobal, nextRotationGlobalRads)
-	var willCollideWithWalls = willCollideWithWallsFunction(transformToCheck, nextRotationGlobalRads, nextPositionGlobal)
-	var willCollideWithArea = await willCollideWithArea(transformToCheck)
+	var willCollideWithWalls = willCollideWithWallsFunction(transformToCheck)
+	var willCollideWithArea = await willCollideWithAreaFunc(transformToCheck)
 	return willCollideWithWalls or willCollideWithArea
 
 func snapToGrid() -> void:
-	var startSnap = (global_position / 16).round() * 16
-	var maxRadius = 15  # How far out to search (in grid units)
+	var firstCoordinatesToCheck = (global_position / 16).round() * 16
+	var maxRadius = 15  # How far out to search (in grid units
+	# set rotation wait 2 phyrics updates
+	var roundedRot = roundRotation(getNodeToMove().global_rotation)
+	getNodeToMove().global_rotation = roundedRot
+	# snap position.
 	for radius in range(maxRadius + 1):
 		for offset in get_grid_offsets_at_radius(radius):
-			var tryPos = startSnap + offset * 16
+			var tryPos = firstCoordinatesToCheck + offset * 16
 			if not await will_collide(tryPos, getNodeToMove().global_rotation):
 				getNodeToMove().global_position = tryPos
 				print("Snapped to legal position: ", tryPos)
 				return
-	print("Could not find a legal snap position near ", startSnap)
+	print("Could not find a legal snap position near ", firstCoordinatesToCheck)
+
+func roundRotation(rotation_radians: float) -> float:
+	var ninety_deg = PI / 2
+	return round(rotation_radians / ninety_deg) * ninety_deg
 
 # Helper to generate offsets in square rings (Manhattan distance from center)
 func get_grid_offsets_at_radius(r: int) -> Array[Vector2]:
