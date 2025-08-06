@@ -77,10 +77,11 @@ func _process(_delta: float) -> void:
 	var newPosition = get_global_mouse_position()
 	# Allow to follow but when released it will snap to legal square in grid.
 	getNodeToMove().global_position = newPosition
+	## OLD: this is if want to follow constantly
 	#if await will_collide(newPosition):
 		#print("set to last legal = " + str(lastLegalPosition))
 		#getNodeToMove().global_position = lastLegalPosition
-		## THIS SHOULD ALWAYS BE FALSE
+		## THIS SHOULD ALWAYS BE FALSE:
 		#print("Will collide at lastLegalPosition = " + str(await will_collide(lastLegalPosition)))
 		#return
 	#if dragging:
@@ -94,32 +95,14 @@ func getNodeToMove() -> Node2D:
 
 var debug_shapes = []
 
-func willCollideWithWalls(transToChech: Transform2D, nextRotationGlobalRads, nextPosition) -> bool:
+func willCollideWithWallsFunction(transToChech: Transform2D, nextRotationGlobalRads, nextPosition) -> bool:
 	var query = PhysicsShapeQueryParameters2D.new()
-	var areaCollisionShape: CollisionShape2D = null
-	for child in areaForDragDetection.get_children():
-		if child is CollisionShape2D:
-			areaCollisionShape = child
-	if areaCollisionShape == null:
-		push_error("Area collision shape not found on: " + self.name)
+	var areaCollisionShape: CollisionShape2D = getDraggableAreasCollisionShape()
 	query.shape = areaCollisionShape.shape
-	var rotationAngle = nextRotationGlobalRads
-	var shape_offset: Vector2 = areaCollisionShape.position
-	var global_position_to_test = nextPosition + shape_offset.rotated(rotationAngle)
-	query.transform = Transform2D(rotationAngle, global_position_to_test)
+	query.transform = transToChech
 	query.collision_mask = 4
 	var result = get_world_2d().direct_space_state.intersect_shape(query)
 	return result.size() > 0
-	## MY ATTEMPT BUT DIDNT WORK
-	#var query = PhysicsShapeQueryParameters2D.new()
-	#query.shape = getDraggableAreasCollisionShape()
-	#query.transform = transToChech
-	#query.collision_mask = 4
-	#var result = get_world_2d().direct_space_state.intersect_shape(query)
-	#var willCollide = result.size() > 0
-	#print("Will collide with walls = " + str(willCollide))
-	#print("transToChech angle  = " + str(transToChech.get_rotation()))
-	#return willCollide
 
 func _draw():
 	for shape_info in debug_shapes:
@@ -182,7 +165,7 @@ func willCollideWithArea(transformToCheck: Transform2D) -> bool:
 
 func will_collide(nextPositionGlobal: Vector2, nextRotationGlobalRads: float) -> bool:
 	var transformToCheck = createTransformToCheck(nextPositionGlobal, nextRotationGlobalRads)
-	var willCollideWithWalls = willCollideWithWalls(transformToCheck, nextRotationGlobalRads, nextPositionGlobal)
+	var willCollideWithWalls = willCollideWithWallsFunction(transformToCheck, nextRotationGlobalRads, nextPositionGlobal)
 	var willCollideWithArea = await willCollideWithArea(transformToCheck)
 	return willCollideWithWalls or willCollideWithArea
 
