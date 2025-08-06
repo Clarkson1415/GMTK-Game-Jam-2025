@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bjmah8tuplohf"]
+[gd_scene load_steps=18 format=3 uid="uid://bjmah8tuplohf"]
 
 [ext_resource type="Texture2D" uid="uid://c2bb7rnx352fn" path="res://MyArt/PowerSource.png" id="1_qa6cs"]
 [ext_resource type="Texture2D" uid="uid://c640te23utmfn" path="res://MyArt/BLANK.png" id="6_feurs"]
@@ -65,9 +65,6 @@ animations = [{
 "name": &"ON",
 "speed": 10.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujyyc"]
-size = Vector2(12, 12)
 
 [sub_resource type="Gradient" id="Gradient_qa6cs"]
 colors = PackedColorArray(1, 1, 0, 1, 0, 0, 0, 1)
@@ -177,11 +174,6 @@ sprite_frames = SubResource("SpriteFrames_wl7tt")
 animation = &"ON"
 autoplay = "ON"
 frame_progress = 0.168697
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_ujyyc")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 0.0

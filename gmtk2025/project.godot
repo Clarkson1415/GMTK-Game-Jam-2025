@@ -46,8 +46,10 @@ leftClick={
 
 [layer_names]
 
-2d_physics/layer_1="Walls Wires"
-2d_physics/layer_2="Wire input outputs"
+2d_physics/layer_1="Wires Draggable areas"
+2d_physics/layer_2="Terminals draggable areas"
+2d_physics/layer_3="Walls"
+2d_physics/layer_4="PowerableAreas"
 
 [rendering]
 

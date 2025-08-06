@@ -1,10 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://5rfy1kin8dar"]
+[gd_scene load_steps=21 format=3 uid="uid://5rfy1kin8dar"]
 
 [ext_resource type="Script" uid="uid://cbty4pbd61c3d" path="res://Scripts/PowerTerminal.gd" id="1_ky1xg"]
-[ext_resource type="Script" uid="uid://kxqhb8pcgjvx" path="res://Scripts/DraggableObject.gd" id="2_ar5te"]
 [ext_resource type="Texture2D" uid="uid://4c45in7adjmr" path="res://MyArt/PowerTerminalWhite.png" id="2_rjwmc"]
 [ext_resource type="Texture2D" uid="uid://bfbn8gbu1ubu" path="res://MyArt/WhitePowerSymbol.png" id="3_ky1xg"]
-[ext_resource type="Texture2D" uid="uid://cmk6oi2n20m1p" path="res://MyArt/highlight.png" id="7_7csno"]
 [ext_resource type="Script" uid="uid://b50324mxbuano" path="res://Scripts/PowerAnimations.gd" id="7_jjs2v"]
 [ext_resource type="Texture2D" uid="uid://c640te23utmfn" path="res://MyArt/BLANK.png" id="8_la174"]
 [ext_resource type="Texture2D" uid="uid://c6t3wvrd21v7u" path="res://MyArt/Attempt2Sparks-Sheet.png" id="9_yx06m"]
@@ -170,29 +168,13 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.662393, 0.74359)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vig1u"]
-size = Vector2(16, 16)
-
 [node name="powerTerminal" type="Node2D" node_paths=PackedStringArray("yellowPowerIcon", "sparksAnimationPlayer")]
 script = ExtResource("1_ky1xg")
 yellowPowerIcon = NodePath("ToTurnYellowWhenOn")
 sparksAnimationPlayer = NodePath("AnimationPlayer")
 
-[node name="DraggableObject" type="Node2D" parent="." node_paths=PackedStringArray("areaForDragDetection", "highlightSprite", "areaCollisionShape")]
-script = ExtResource("2_ar5te")
-dragParent = true
-areaForDragDetection = NodePath("../DraggableA")
-highlightSprite = NodePath("../dragHighlight")
-areaCollisionShape = NodePath("../DraggableA/CollisionShape2D")
-metadata/_custom_type_script = "uid://kxqhb8pcgjvx"
-
 [node name="Tile" type="Sprite2D" parent="."]
 texture = ExtResource("2_rjwmc")
-
-[node name="dragHighlight" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.352941)
-texture = ExtResource("7_7csno")
 
 [node name="ToTurnYellowWhenOn" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 0, 1)
@@ -213,8 +195,3 @@ frame_progress = 0.672152
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 1.5
 texture = SubResource("GradientTexture2D_rjwmc")
-
-[node name="DraggableA" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DraggableA"]
-shape = SubResource("RectangleShape2D_vig1u")

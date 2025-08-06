@@ -7,6 +7,8 @@
 size = Vector2(4, 12)
 
 [node name="HalfPowerableArea" instance=ExtResource("1_xlv01")]
+collision_layer = 8
+collision_mask = 8
 
 [node name="yellow" parent="." index="1"]
 texture = ExtResource("2_mutlt")

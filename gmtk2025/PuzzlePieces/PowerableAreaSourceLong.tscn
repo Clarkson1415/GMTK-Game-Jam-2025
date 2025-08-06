@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bxkbfds51pijm" path="res://MyArt/PowerSourceWire.png" id="4_iqvuk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js7wl"]
-size = Vector2(4, 18)
+size = Vector2(4, 2)
 
 [node name="LongWire" instance=ExtResource("1_js7wl")]
 isPowerSource = true
@@ -24,5 +24,9 @@ position = Vector2(0, 8)
 texture = ExtResource("4_iqvuk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-position = Vector2(0, 9)
+position = Vector2(0, 17)
+shape = SubResource("RectangleShape2D_js7wl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="4"]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_js7wl")
