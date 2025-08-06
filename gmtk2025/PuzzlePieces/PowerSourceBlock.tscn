@@ -1,8 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://bjmah8tuplohf"]
+[gd_scene load_steps=18 format=3 uid="uid://bjmah8tuplohf"]
 
 [ext_resource type="Texture2D" uid="uid://c2bb7rnx352fn" path="res://MyArt/PowerSource.png" id="1_qa6cs"]
-[ext_resource type="Script" uid="uid://kxqhb8pcgjvx" path="res://Scripts/DraggableObject.gd" id="4_hmt0e"]
-[ext_resource type="Texture2D" uid="uid://cmk6oi2n20m1p" path="res://MyArt/highlight.png" id="5_nb45e"]
 [ext_resource type="Texture2D" uid="uid://c640te23utmfn" path="res://MyArt/BLANK.png" id="6_feurs"]
 [ext_resource type="Texture2D" uid="uid://c6t3wvrd21v7u" path="res://MyArt/Attempt2Sparks-Sheet.png" id="7_feurs"]
 
@@ -166,9 +164,6 @@ _data = {
 &"RESET": SubResource("Animation_4hcp3")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hmt0e"]
-size = Vector2(12, 12)
-
 [node name="PowerSourceBlock" type="Node2D"]
 
 [node name="Tile" type="Sprite2D" parent="."]
@@ -189,27 +184,3 @@ libraries = {
 &"": SubResource("AnimationLibrary_hevua")
 }
 autoplay = "ON"
-
-[node name="DraggableObject2" type="Node2D" parent="." node_paths=PackedStringArray("areaForDragDetection", "highlightSprite")]
-script = ExtResource("4_hmt0e")
-dragParent = true
-areaForDragDetection = NodePath("Area2D")
-highlightSprite = NodePath("highlight")
-metadata/_custom_type_script = "uid://kxqhb8pcgjvx"
-
-[node name="Area2D" type="Area2D" parent="DraggableObject2"]
-collision_layer = 2
-collision_mask = 7
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DraggableObject2/Area2D"]
-shape = SubResource("RectangleShape2D_hmt0e")
-
-[node name="highlight" type="Sprite2D" parent="DraggableObject2"]
-visible = false
-modulate = Color(1, 1, 1, 0.352941)
-texture = ExtResource("5_nb45e")
-
-[node name="highlight2" type="Sprite2D" parent="DraggableObject2/highlight"]
-modulate = Color(1, 1, 1, 0.352941)
-position = Vector2(16, 0)
-texture = ExtResource("5_nb45e")

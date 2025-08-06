@@ -12,7 +12,6 @@ class_name DraggableObject
 var initialPos: Vector2
 var underCursor: bool = false
 var dragging: bool = false
-var rPressed: bool = false
 
 @export var highlightSprite: Sprite2D
 
@@ -36,30 +35,30 @@ func onMouseExit():
 	highlightSprite.visible = false
 
 func _input(_event: InputEvent) -> void:
-	if !underCursor:
-		return;
 	var isLeftMouseButtonPressed = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	if !rPressed and Input.is_key_pressed(KEY_R) and !currentlyRotating:
+	if underCursor and Input.is_key_pressed(KEY_R) and !currentlyRotating:
 		print("before rotation angle  = " + str(getNodeToMove().global_rotation))
 		print("rotation to check  = " + str(getNodeToMove().global_rotation + (PI/2)))
 		var willCollide = await will_collide(getNodeToMove().global_position, getNodeToMove().global_rotation + (PI/2))
 		print("rotation will collide = " + str(willCollide))
 		if !dragging and willCollide:
 			return
-		rPressed = true;
 		GameSounds.PlayRotateSound()
 		rotateOverTime(rotationTime)
-	if !Input.is_key_pressed(KEY_R):
-		rPressed = false;
-	if isLeftMouseButtonPressed and !GlobalDragging.IsDragging():
-		print("Drag true")
-		dragging = true
-		GlobalDragging.ToggleDragging(true)
-	elif !isLeftMouseButtonPressed and dragging:
+		return
+	if !underCursor:
+		highlightSprite.visible = false
+		return
+	if !isLeftMouseButtonPressed and dragging:
 		print("Drag false")
 		dragging = false
 		GlobalDragging.ToggleDragging(false)
 		snapToGrid()
+		return
+	if isLeftMouseButtonPressed and !GlobalDragging.IsDragging():
+		print("Drag true")
+		dragging = true
+		GlobalDragging.ToggleDragging(true)
 
 var currentlyRotating: bool = false;
 
@@ -96,69 +95,56 @@ func getNodeToMove() -> Node2D:
 	var nodeToDrag = get_parent() if dragParent else self
 	return nodeToDrag
 
-var debug_shapes = []
+func willCollideWithWallsFunction(transformsToCheck: Array[Transform2D]) -> bool:
+	var areaCollisionShapes: Array[CollisionShape2D] = getDraggableAreasCollisionShape()
+	for i in range(len(areaCollisionShapes)):
+		if willShapeCollideWithWall(transformsToCheck[i], areaCollisionShapes[i]):
+			return true
+	return false
 
-func willCollideWithWallsFunction(transToChech: Transform2D) -> bool:
+func willShapeCollideWithWall(transToChech: Transform2D, areaCollisionShape: CollisionShape2D) -> bool:
 	var query = PhysicsShapeQueryParameters2D.new()
-	var areaCollisionShape: CollisionShape2D = getDraggableAreasCollisionShape()
 	query.shape = areaCollisionShape.shape
 	query.transform = transToChech
 	query.collision_mask = 4
 	var result = get_world_2d().direct_space_state.intersect_shape(query)
 	return result.size() > 0
 
-func _draw():
-	for shape_info in debug_shapes:
-		drawDebugShapeCheck(shape_info["rotation"], shape_info["position"], shape_info["shape"], shape_info["color"])
-
-func drawDebugShapeCheck(localRot: float, offset: Vector2, shape: Shape2D, color: Color):
-	var transform = Transform2D(0, offset)
-	if shape is RectangleShape2D:
-		var rect_size = shape.extents * 2
-		var half_size = rect_size / 2
-		var points = [
-			Vector2(-half_size.x, -half_size.y),
-			Vector2(half_size.x, -half_size.y),
-			Vector2(half_size.x, half_size.y),
-			Vector2(-half_size.x, half_size.y),
-		]
-		for i in range(points.size()):
-			points[i] = transform * points[i]
-		draw_colored_polygon(points, color)
-		draw_polyline(points + [points[0]], color.darkened(0.5), 2)
-
-func getDraggableAreasCollisionShape() -> CollisionShape2D:
-	var areaCollisionShape: CollisionShape2D = null
+func getDraggableAreasCollisionShape() -> Array[CollisionShape2D]:
+	var areaCollisionShape: Array[CollisionShape2D]
 	for child in areaForDragDetection.get_children():
 		if child is CollisionShape2D:
-			areaCollisionShape = child
+			areaCollisionShape.append(child)
 	if areaCollisionShape == null:
 		push_error("Area collision shape not found on: " + self.name)
 	return areaCollisionShape
 
-func createTransformToCheck(nextPositionGlobal: Vector2, nextRotationGlobalRads: float):
-	var areasCollisionShape: CollisionShape2D = getDraggableAreasCollisionShape()
-	var shape_offset: Vector2 = areasCollisionShape.position
-	var global_position_to_test = nextPositionGlobal + shape_offset.rotated(nextRotationGlobalRads)
-	print("rotation used in the actual transofrmToCheck = " + str(nextRotationGlobalRads))
-	var transformToCheck = Transform2D(nextRotationGlobalRads, global_position_to_test)
-	# Save debug info for drawing later
-	debug_shapes.clear()
-	debug_shapes.append({
-		"rotation": nextRotationGlobalRads,
-		"position": shape_offset,
-		"shape": areasCollisionShape.shape,
-		"color": Color(0, 1, 0, 0.3)
-	})
-	queue_redraw()  # Request redraw
-	return transformToCheck
+func createTransformsToCheck(nextPositionGlobal: Vector2, nextRotationGlobalRads: float) -> Array[Transform2D]:
+	var areasCollisionShapes: Array[CollisionShape2D] = getDraggableAreasCollisionShape()
+	var transformsToCheck: Array[Transform2D]
+	for collisionShape in areasCollisionShapes:
+		var transform = createATransformToCheck(collisionShape, nextPositionGlobal, nextRotationGlobalRads)
+		transformsToCheck.append(transform)
+	return transformsToCheck
 
-func willCollideWithAreaFunc(transformToCheck: Transform2D) -> bool:
+func createATransformToCheck(areasCollisionShape: CollisionShape2D, nextPositionGlobal: Vector2, nextRotationGlobalRads: float) -> Transform2D:
+	#var parent_transform = Transform2D(nextRotationGlobalRads, nextPositionGlobal)
+	#var combined_local_transform = areasCollisionShape.transform
+	#var final_transform = parent_transform * combined_local_transform
+	print("areasCollisionShape.transform: ", areasCollisionShape.transform)
+	var rotated_offset = areasCollisionShape.transform.origin.rotated(nextRotationGlobalRads)
+	var final_position = rotated_offset + nextPositionGlobal
+	var final_rotation = nextRotationGlobalRads + areasCollisionShape.transform.get_rotation()
+	var final_transform = Transform2D(final_rotation, final_position)
+	var local_transform = get_global_transform().affine_inverse() * final_transform
+	return final_transform
+
+func willCollideWithArea(transformToCheck: Transform2D) -> bool:
 	var previousPos = areaForDragDetection.global_position
 	var previousRotation = areaForDragDetection.global_rotation
 	PhysicsServer2D.area_set_transform(areaForDragDetection.get_rid(), transformToCheck)
 	await get_tree().physics_frame
-	await get_tree().physics_frame
+	# await get_tree().physics_frame
 	# await get_tree().process_frame  # Wait one frame to let physics server update
 	var overlappedAreas = areaForDragDetection.get_overlapping_areas()
 	var overlappedAreaOnMask = overlappedAreas.filter(func(area):
@@ -169,10 +155,16 @@ func willCollideWithAreaFunc(transformToCheck: Transform2D) -> bool:
 	PhysicsServer2D.area_set_transform(areaForDragDetection.get_rid(), Transform2D(previousRotation, previousPos))
 	return areasInWay
 
+func willAnyCollideWithAreaFunc(transformsToCheck: Array[Transform2D]) -> bool:
+	for tran in transformsToCheck:
+		if await willCollideWithArea(tran):
+			return true
+	return false
+
 func will_collide(nextPositionGlobal: Vector2, nextRotationGlobalRads: float) -> bool:
-	var transformToCheck = createTransformToCheck(nextPositionGlobal, nextRotationGlobalRads)
-	var willCollideWithWalls = willCollideWithWallsFunction(transformToCheck)
-	var willCollideWithArea = await willCollideWithAreaFunc(transformToCheck)
+	var transformsToCheck: Array[Transform2D] = createTransformsToCheck(nextPositionGlobal, nextRotationGlobalRads)
+	var willCollideWithWalls = willCollideWithWallsFunction(transformsToCheck)
+	var willCollideWithArea = await willAnyCollideWithAreaFunc(transformsToCheck)
 	return willCollideWithWalls or willCollideWithArea
 
 func snapToGrid() -> void:

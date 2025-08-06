@@ -4,17 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://cmk6oi2n20m1p" path="res://MyArt/highlight.png" id="2_6pisg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vef74"]
-size = Vector2(14, 14)
+size = Vector2(6, 6)
 
 [node name="DraggableCableTempl" type="Node2D" node_paths=PackedStringArray("areaForDragDetection", "highlightSprite")]
 script = ExtResource("1_xls65")
-areaForDragDetection = NodePath("dragable")
+areaForDragDetection = NodePath("wiresDragable")
 highlightSprite = NodePath("highlight")
 
-[node name="dragable" type="Area2D" parent="."]
+[node name="wiresDragable" type="Area2D" parent="."]
 collision_mask = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="dragable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wiresDragable"]
 shape = SubResource("RectangleShape2D_vef74")
 
 [node name="highlight" type="Sprite2D" parent="."]
