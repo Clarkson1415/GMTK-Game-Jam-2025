@@ -39,7 +39,10 @@ func _input(_event: InputEvent) -> void:
 	if !underCursor:
 		return;
 	var isLeftMouseButtonPressed = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	if !rPressed and Input.is_key_pressed(KEY_R) and !currentlyRotating and !will_collide(getNodeToMove().global_position, getNodeToMove().global_rotation + (PI/2)):
+	if !rPressed and Input.is_key_pressed(KEY_R) and !currentlyRotating:
+		print("before rotation angle  = " + str(getNodeToMove().global_rotation))
+		if await will_collide(getNodeToMove().global_position, getNodeToMove().global_rotation + (PI/2)):
+			return
 		rPressed = true;
 		GameSounds.PlayRotateSound()
 		rotateOverTime(rotationTime)
@@ -53,7 +56,6 @@ func _input(_event: InputEvent) -> void:
 		print("Drag false")
 		dragging = false
 		GlobalDragging.ToggleDragging(false)
-		highlightSprite.visible = false
 		snapToGrid()
 
 var currentlyRotating: bool = false;
@@ -92,7 +94,7 @@ func getNodeToMove() -> Node2D:
 
 var debug_shapes = []
 
-func willCollideWithWalls(nextPosition: Vector2, nextRotationGlobalRads: float) -> bool:
+func willCollideWithWalls(transToChech: Transform2D, nextRotationGlobalRads, nextPosition) -> bool:
 	var query = PhysicsShapeQueryParameters2D.new()
 	var areaCollisionShape: CollisionShape2D = null
 	for child in areaForDragDetection.get_children():
@@ -106,17 +108,18 @@ func willCollideWithWalls(nextPosition: Vector2, nextRotationGlobalRads: float) 
 	var global_position_to_test = nextPosition + shape_offset.rotated(rotationAngle)
 	query.transform = Transform2D(rotationAngle, global_position_to_test)
 	query.collision_mask = 4
-	# Save debug info for drawing later
-	debug_shapes.clear()
-	debug_shapes.append({
-		"rotation": rotationAngle,
-		"position": shape_offset,
-		"shape": areaCollisionShape.shape,
-		"color": Color(0, 1, 0, 0.3)
-	})
-	queue_redraw()  # Request redraw
 	var result = get_world_2d().direct_space_state.intersect_shape(query)
 	return result.size() > 0
+	## MY ATTEMPT BUT DIDNT WORK
+	#var query = PhysicsShapeQueryParameters2D.new()
+	#query.shape = getDraggableAreasCollisionShape()
+	#query.transform = transToChech
+	#query.collision_mask = 4
+	#var result = get_world_2d().direct_space_state.intersect_shape(query)
+	#var willCollide = result.size() > 0
+	#print("Will collide with walls = " + str(willCollide))
+	#print("transToChech angle  = " + str(transToChech.get_rotation()))
+	#return willCollide
 
 func _draw():
 	for shape_info in debug_shapes:
@@ -138,21 +141,50 @@ func drawDebugShapeCheck(localRot: float, offset: Vector2, shape: Shape2D, color
 		draw_colored_polygon(points, color)
 		draw_polyline(points + [points[0]], color.darkened(0.5), 2)
 
+func getDraggableAreasCollisionShape() -> CollisionShape2D:
+	var areaCollisionShape: CollisionShape2D = null
+	for child in areaForDragDetection.get_children():
+		if child is CollisionShape2D:
+			areaCollisionShape = child
+	if areaCollisionShape == null:
+		push_error("Area collision shape not found on: " + self.name)
+	return areaCollisionShape
+
+func createTransformToCheck(nextPositionGlobal: Vector2, nextRotationGlobalRads: float):
+	var areasCollisionShape: CollisionShape2D = getDraggableAreasCollisionShape()
+	var shape_offset: Vector2 = areasCollisionShape.position
+	var global_position_to_test = nextPositionGlobal + shape_offset.rotated(nextRotationGlobalRads)
+	var transformToCheck = Transform2D(nextRotationGlobalRads, global_position_to_test)
+	# Save debug info for drawing later
+	debug_shapes.clear()
+	debug_shapes.append({
+		"rotation": nextRotationGlobalRads,
+		"position": shape_offset,
+		"shape": areasCollisionShape.shape,
+		"color": Color(0, 1, 0, 0.3)
+	})
+	queue_redraw()  # Request redraw
+	return transformToCheck
+
+func willCollideWithArea(transformToCheck: Transform2D) -> bool:
+	var previousPos = areaForDragDetection.global_position
+	var previousRotation = areaForDragDetection.global_rotation
+	PhysicsServer2D.area_set_transform(areaForDragDetection.get_rid(), transformToCheck)
+	await get_tree().process_frame  # Wait one frame to let physics server update
+	var overlappedAreas = areaForDragDetection.get_overlapping_areas()
+	var overlappedAreaOnMask = overlappedAreas.filter(func(area):
+		return area.collision_layer & areaForDragDetection.collision_mask != 0)
+	var areasInWay = !overlappedAreaOnMask.is_empty()
+	for areas in overlappedAreaOnMask:
+		print("overlapping Area = ", areas.name)
+	PhysicsServer2D.area_set_transform(areaForDragDetection.get_rid(), Transform2D(previousRotation, previousPos))
+	return areasInWay
+
 func will_collide(nextPositionGlobal: Vector2, nextRotationGlobalRads: float) -> bool:
-	#var previousPos = areaForDragDetection.global_position
-	#var rotationAngle = getNodeToMove().global_rotation
-	#PhysicsServer2D.area_set_transform(areaForDragDetection.get_rid(), Transform2D(rotationAngle, nextPosition))
-	#await get_tree().process_frame  # Wait one frame to let physics server update
-	#var overlappedAreas = areaForDragDetection.get_overlapping_areas()
-	#var overlappedAreaOnMask = overlappedAreas.filter(func(area):
-		#return area.collision_layer & areaForDragDetection.collision_mask != 0)
-	#var canDragToPosition = overlappedAreaOnMask.is_empty()
-	#print("AREAS tested at = ", nextPosition)
-	#print("AREAS OVERLAPPING = ", !canDragToPosition)
-	#for areas in overlappedAreaOnMask:
-		#print("overlapping Area = ", areas.name)
-	#PhysicsServer2D.area_set_transform(areaForDragDetection.get_rid(), Transform2D(rotationAngle, previousPos))
-	return willCollideWithWalls(nextPositionGlobal, nextRotationGlobalRads)# or !canDragToPosition
+	var transformToCheck = createTransformToCheck(nextPositionGlobal, nextRotationGlobalRads)
+	var willCollideWithWalls = willCollideWithWalls(transformToCheck, nextRotationGlobalRads, nextPositionGlobal)
+	var willCollideWithArea = await willCollideWithArea(transformToCheck)
+	return willCollideWithWalls or willCollideWithArea
 
 func snapToGrid() -> void:
 	var startSnap = (global_position / 16).round() * 16
