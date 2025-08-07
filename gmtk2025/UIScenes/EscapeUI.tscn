@@ -333,10 +333,10 @@ metadata/_edit_use_anchors_ = true
 [node name="GridContainer" type="GridContainer" parent="Control3/Levels"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -1.25968
-anchor_top = 0.195245
-anchor_right = 2.09032
-anchor_bottom = 1.84524
+anchor_left = -0.48461
+anchor_top = 0.277292
+anchor_right = 2.86539
+anchor_bottom = 1.92729
 grow_horizontal = 2
 grow_vertical = 2
 columns = 6
@@ -355,46 +355,6 @@ level = 2
 custom_minimum_size = Vector2(19, 19)
 layout_mode = 2
 level = 3
-
-[node name="Button4" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
-custom_minimum_size = Vector2(19, 19)
-layout_mode = 2
-level = 4
-
-[node name="Button5" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
-custom_minimum_size = Vector2(19, 19)
-layout_mode = 2
-level = 5
-
-[node name="Button6" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
-custom_minimum_size = Vector2(19, 19)
-layout_mode = 2
-level = 6
-
-[node name="Button7" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
-custom_minimum_size = Vector2(19, 19)
-layout_mode = 2
-level = 7
-
-[node name="Button8" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
-custom_minimum_size = Vector2(19, 19)
-layout_mode = 2
-
-[node name="Button9" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
-custom_minimum_size = Vector2(19, 19)
-layout_mode = 2
-
-[node name="Button10" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
-custom_minimum_size = Vector2(19, 19)
-layout_mode = 2
-
-[node name="Button11" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
-custom_minimum_size = Vector2(19, 19)
-layout_mode = 2
-
-[node name="Button12" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
-custom_minimum_size = Vector2(19, 19)
-layout_mode = 2
 
 [node name="Quit" type="Button" parent="Control3" node_paths=PackedStringArray("anim")]
 layout_mode = 0

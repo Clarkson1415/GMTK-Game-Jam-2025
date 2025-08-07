@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dxia4b0hn6471"]
 
-[ext_resource type="AudioStream" uid="uid://ci51y36ex54dc" path="res://MySounds/Music/07. Efficiency Program.mp3" id="1_fqcb7"]
+[ext_resource type="AudioStream" uid="uid://ds0fm76im7hua" path="res://MySounds/Music/WireConnectGameMusic_MINIMAL.mp3" id="1_fqcb7"]
 
 [node name="GameMusic" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_fqcb7")
