@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://d02qxed4aguu"]
+[gd_scene load_steps=27 format=4 uid="uid://d02qxed4aguu"]
 
 [ext_resource type="Texture2D" uid="uid://b8qqlloj53og6" path="res://newart/Bright walls tilemap.png" id="1_1oiua"]
 [ext_resource type="Script" uid="uid://chhker38tu7rl" path="res://GameScenes/LevelInitialiser.gd" id="1_ialxh"]
@@ -437,11 +437,17 @@ texture = ExtResource("6_t4ogr")
 [sub_resource type="TileSet" id="TileSet_mfdv2"]
 sources/0 = SubResource("TileSetAtlasSource_hve3p")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2i53h"]
+size = Vector2(1, 2)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qih1h"]
 size = Vector2(10, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2i53h"]
-size = Vector2(1, 1)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_im0hx"]
+size = Vector2(12, 11.7876)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4ogr"]
+size = Vector2(0.317394, 2)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_ialxh")
@@ -501,13 +507,12 @@ texture = ExtResource("13_im0hx")
 collision_layer = 2
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerSourceBlock/DraggableObject2/Area2D"]
-shape = SubResource("RectangleShape2D_qih1h")
-disabled = true
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="PowerSourceBlock/DraggableObject2/Area2D"]
-position = Vector2(21.5, -0.5)
+[node name="Sourceshape1" type="CollisionShape2D" parent="PowerSourceBlock/DraggableObject2/Area2D"]
+position = Vector2(21, 0)
 shape = SubResource("RectangleShape2D_2i53h")
+
+[node name="Sourceshape2" type="CollisionShape2D" parent="PowerSourceBlock/DraggableObject2/Area2D"]
+shape = SubResource("RectangleShape2D_qih1h")
 
 [node name="powerTerminal2" parent="." node_paths=PackedStringArray("area2ds") instance=ExtResource("12_a5lji")]
 position = Vector2(64, 48)
@@ -518,3 +523,31 @@ position = Vector2(-8, 0)
 rotation = 1.57079
 thisColour = 1
 isPowerSource = false
+
+[node name="DraggableObject4" type="Node2D" parent="powerTerminal2" node_paths=PackedStringArray("areaForDragDetection", "highlightSprite")]
+script = ExtResource("12_2i53h")
+dragParent = true
+areaForDragDetection = NodePath("Area2D")
+highlightSprite = NodePath("dragHighlight")
+metadata/_custom_type_script = "uid://kxqhb8pcgjvx"
+
+[node name="dragHighlight" type="Sprite2D" parent="powerTerminal2/DraggableObject4"]
+visible = false
+modulate = Color(1, 1, 1, 0.352941)
+texture = ExtResource("13_im0hx")
+
+[node name="dragHighlight2" type="Sprite2D" parent="powerTerminal2/DraggableObject4/dragHighlight"]
+modulate = Color(1, 1, 1, 0.352941)
+position = Vector2(-16, 0)
+texture = ExtResource("13_im0hx")
+
+[node name="Area2D" type="Area2D" parent="powerTerminal2/DraggableObject4"]
+collision_layer = 2
+collision_mask = 7
+
+[node name="powerT1" type="CollisionShape2D" parent="powerTerminal2/DraggableObject4/Area2D"]
+shape = SubResource("RectangleShape2D_im0hx")
+
+[node name="powerT2" type="CollisionShape2D" parent="powerTerminal2/DraggableObject4/Area2D"]
+position = Vector2(-22.7309, 0.0110474)
+shape = SubResource("RectangleShape2D_t4ogr")

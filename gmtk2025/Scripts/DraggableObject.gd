@@ -139,10 +139,11 @@ func createATransformToCheck(areasCollisionShape: CollisionShape2D, nextPosition
 	var local_transform = get_global_transform().affine_inverse() * final_transform
 	return final_transform
 
-func willCollideWithArea(transformToCheck: Transform2D) -> bool:
+func willCollideWithArea(nextPositionGlobal, nextRotationGlobalRads) -> bool:
 	var previousPos = areaForDragDetection.global_position
 	var previousRotation = areaForDragDetection.global_rotation
-	PhysicsServer2D.area_set_transform(areaForDragDetection.get_rid(), transformToCheck)
+	var areaTransformedToNewPosition: Transform2D = Transform2D(nextRotationGlobalRads, nextPositionGlobal)
+	PhysicsServer2D.area_set_transform(areaForDragDetection.get_rid(), areaTransformedToNewPosition)
 	await get_tree().physics_frame
 	# await get_tree().physics_frame
 	# await get_tree().process_frame  # Wait one frame to let physics server update
@@ -155,16 +156,10 @@ func willCollideWithArea(transformToCheck: Transform2D) -> bool:
 	PhysicsServer2D.area_set_transform(areaForDragDetection.get_rid(), Transform2D(previousRotation, previousPos))
 	return areasInWay
 
-func willAnyCollideWithAreaFunc(transformsToCheck: Array[Transform2D]) -> bool:
-	for tran in transformsToCheck:
-		if await willCollideWithArea(tran):
-			return true
-	return false
-
 func will_collide(nextPositionGlobal: Vector2, nextRotationGlobalRads: float) -> bool:
 	var transformsToCheck: Array[Transform2D] = createTransformsToCheck(nextPositionGlobal, nextRotationGlobalRads)
 	var willCollideWithWalls = willCollideWithWallsFunction(transformsToCheck)
-	var willCollideWithArea = await willAnyCollideWithAreaFunc(transformsToCheck)
+	var willCollideWithArea = await willCollideWithArea(nextPositionGlobal, nextRotationGlobalRads)
 	return willCollideWithWalls or willCollideWithArea
 
 func snapToGrid() -> void:
