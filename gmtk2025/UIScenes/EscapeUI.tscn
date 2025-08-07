@@ -333,10 +333,10 @@ metadata/_edit_use_anchors_ = true
 [node name="GridContainer" type="GridContainer" parent="Control3/Levels"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.48461
-anchor_top = 0.277292
-anchor_right = 2.86539
-anchor_bottom = 1.92729
+anchor_left = -0.675789
+anchor_top = 0.102045
+anchor_right = 2.67421
+anchor_bottom = 1.75204
 grow_horizontal = 2
 grow_vertical = 2
 columns = 6
@@ -355,6 +355,11 @@ level = 2
 custom_minimum_size = Vector2(19, 19)
 layout_mode = 2
 level = 3
+
+[node name="Button4" parent="Control3/Levels/GridContainer" instance=ExtResource("7_2nt4w")]
+custom_minimum_size = Vector2(19, 19)
+layout_mode = 2
+level = 4
 
 [node name="Quit" type="Button" parent="Control3" node_paths=PackedStringArray("anim")]
 layout_mode = 0
