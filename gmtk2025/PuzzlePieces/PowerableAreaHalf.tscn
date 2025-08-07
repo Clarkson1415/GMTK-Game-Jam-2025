@@ -8,9 +8,8 @@ size = Vector2(4, 2)
 [node name="HalfPowerableArea" instance=ExtResource("1_fgoxh")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
-position = Vector2(0, 9)
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_3rxug")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
-position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_3rxug")

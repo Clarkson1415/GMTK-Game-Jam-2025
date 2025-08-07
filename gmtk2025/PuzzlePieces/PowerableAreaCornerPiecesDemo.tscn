@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://pwqddamtvyx4"]
+
+[ext_resource type="PackedScene" uid="uid://dno8abwxq52bu" path="res://PuzzlePieces/PowerableAreaHalfForCornerPieces.tscn" id="1_4ybia"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="HalfPowerableArea" parent="." instance=ExtResource("1_4ybia")]
+thisColour = 1
+
+[node name="HalfPowerableArea2" parent="." instance=ExtResource("1_4ybia")]
+position = Vector2(1.19209e-07, 0)
+rotation = -4.71238
+scale = Vector2(1, -1)
+thisColour = 1

@@ -4,15 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://bdaqsyld3o2rh" path="res://MyArt/HalfOutlineYellowForCornerWireHalf.png" id="2_mutlt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rxug"]
-size = Vector2(4, 12)
+size = Vector2(4, 2)
 
 [node name="HalfPowerableArea" instance=ExtResource("1_xlv01")]
-collision_layer = 8
-collision_mask = 8
+
+[node name="Wire" parent="." index="0"]
+modulate = Color(0, 1, 1, 1)
 
 [node name="yellow" parent="." index="1"]
+modulate = Color(1, 1, 0, 1)
 texture = ExtResource("2_mutlt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
-position = Vector2(0, 4)
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_3rxug")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
 shape = SubResource("RectangleShape2D_3rxug")

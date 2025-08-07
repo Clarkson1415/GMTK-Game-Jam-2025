@@ -1,20 +1,20 @@
-[gd_scene load_steps=25 format=4 uid="uid://d02qxed4aguu"]
+[gd_scene load_steps=25 format=4 uid="uid://wx6wouxs5upq"]
 
-[ext_resource type="Texture2D" uid="uid://b8qqlloj53og6" path="res://newart/Bright walls tilemap.png" id="1_1oiua"]
-[ext_resource type="Script" uid="uid://chhker38tu7rl" path="res://GameScenes/LevelInitialiser.gd" id="1_ialxh"]
-[ext_resource type="Texture2D" uid="uid://ch048h7py7b1x" path="res://newart/Floor tiles-Sheet.png" id="2_ialxh"]
-[ext_resource type="Texture2D" uid="uid://rke1qgx10wfv" path="res://newart/Stone walls tilemap.png" id="3_2i53h"]
-[ext_resource type="Texture2D" uid="uid://bt3t4xs576ys4" path="res://newart/Topdown shadows-Sheet.png" id="4_im0hx"]
-[ext_resource type="Texture2D" uid="uid://cwkfafgly8mj3" path="res://newart/Wall tiles-Sheet.png" id="5_qih1h"]
-[ext_resource type="Texture2D" uid="uid://bmf61vcsqoom2" path="res://neo_zero_V1.0/neo_zero_tiles_and_buildings_01.png" id="6_t4ogr"]
-[ext_resource type="PackedScene" uid="uid://bjmah8tuplohf" path="res://PuzzlePieces/PowerSourceBlock.tscn" id="10_tsauq"]
-[ext_resource type="PackedScene" uid="uid://wdgmwqblv1mt" path="res://PuzzlePieces/PowerableAreaSourceLong.tscn" id="11_fjmxi"]
-[ext_resource type="Script" uid="uid://kxqhb8pcgjvx" path="res://Scripts/DraggableObject.gd" id="12_2i53h"]
-[ext_resource type="PackedScene" uid="uid://5rfy1kin8dar" path="res://PuzzlePieces/PowerTerminalBlock.tscn" id="12_a5lji"]
-[ext_resource type="Texture2D" uid="uid://cmk6oi2n20m1p" path="res://MyArt/highlight.png" id="13_im0hx"]
+[ext_resource type="Script" uid="uid://chhker38tu7rl" path="res://GameScenes/LevelInitialiser.gd" id="1_gaali"]
+[ext_resource type="Texture2D" uid="uid://b8qqlloj53og6" path="res://newart/Bright walls tilemap.png" id="2_6t1rc"]
+[ext_resource type="Texture2D" uid="uid://ch048h7py7b1x" path="res://newart/Floor tiles-Sheet.png" id="3_3puwn"]
+[ext_resource type="Texture2D" uid="uid://rke1qgx10wfv" path="res://newart/Stone walls tilemap.png" id="4_ossck"]
+[ext_resource type="Texture2D" uid="uid://bt3t4xs576ys4" path="res://newart/Topdown shadows-Sheet.png" id="5_l6wv6"]
+[ext_resource type="Texture2D" uid="uid://cwkfafgly8mj3" path="res://newart/Wall tiles-Sheet.png" id="6_5vu5o"]
+[ext_resource type="Texture2D" uid="uid://bmf61vcsqoom2" path="res://neo_zero_V1.0/neo_zero_tiles_and_buildings_01.png" id="7_7d077"]
+[ext_resource type="PackedScene" uid="uid://bjmah8tuplohf" path="res://PuzzlePieces/PowerSourceBlock.tscn" id="8_27m8l"]
+[ext_resource type="PackedScene" uid="uid://wdgmwqblv1mt" path="res://PuzzlePieces/PowerableAreaSourceLong.tscn" id="9_pxh6b"]
+[ext_resource type="Script" uid="uid://kxqhb8pcgjvx" path="res://Scripts/DraggableObject.gd" id="10_yayep"]
+[ext_resource type="Texture2D" uid="uid://cmk6oi2n20m1p" path="res://MyArt/highlight.png" id="11_0vu6h"]
+[ext_resource type="PackedScene" uid="uid://5rfy1kin8dar" path="res://PuzzlePieces/PowerTerminalBlock.tscn" id="12_6cdyh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1oiua"]
-texture = ExtResource("1_1oiua")
+texture = ExtResource("2_6t1rc")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -115,7 +115,7 @@ texture = ExtResource("1_1oiua")
 6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ialxh"]
-texture = ExtResource("2_ialxh")
+texture = ExtResource("3_3puwn")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -129,7 +129,7 @@ texture = ExtResource("2_ialxh")
 10:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2i53h"]
-texture = ExtResource("3_2i53h")
+texture = ExtResource("4_ossck")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -230,7 +230,7 @@ texture = ExtResource("3_2i53h")
 6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_im0hx"]
-texture = ExtResource("4_im0hx")
+texture = ExtResource("5_l6wv6")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -243,7 +243,7 @@ texture = ExtResource("4_im0hx")
 9:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qih1h"]
-texture = ExtResource("5_qih1h")
+texture = ExtResource("6_5vu5o")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -263,7 +263,7 @@ sources/3 = SubResource("TileSetAtlasSource_im0hx")
 sources/4 = SubResource("TileSetAtlasSource_qih1h")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hve3p"]
-texture = ExtResource("6_t4ogr")
+texture = ExtResource("7_7d077")
 3:1/0 = 0
 4:1/0 = 0
 5:1/0 = 0
@@ -448,7 +448,7 @@ size = Vector2(12, 11.7876)
 size = Vector2(0.317394, 2)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_ialxh")
+script = ExtResource("1_gaali")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-8, 7)
@@ -467,15 +467,15 @@ visible = false
 tile_map_data = PackedByteArray("AAAJAP7/AAAGABAAAAAJAP//AAAGABEAAAAKAP7/AAAHABAAAAAKAP//AAAHABEAAAALAP7/AAAHABAAAAALAP//AAAHABEAAAAMAP7/AAAIABIAAAAMAP//AAAIABMAAAANAP7/AAAHABAAAAANAP//AAAHABEAAAAOAP7/AAAPABIAAAAPAP7/AAAQABIAAAAQAP7/AAARABIAAAARAP7/AAAPAA4AAAASAP7/AAAQAA4AAAATAP7/AAARAA4AAAAOAP//AAAPABMAAAAPAP//AAAQABMAAAAQAP//AAAJABEAAAARAP//AAAPAA8AAAASAP//AAAQAA8AAAATAP//AAARAA8AAAATAP3/AAAKAA0AAAASAP3/AAAKAA0AAAARAP3/AAAKAA0AAAAQAP3/AAAKAA0AAAAPAP3/AAAKAA0AAAAOAP3/AAAKAA0AAAANAP3/AAAKAA0AAAAMAP3/AAAKAA0AAAALAP3/AAAKAA0AAAAKAP3/AAAKAA0AAAAJAP3/AAAKAA0AAAA=")
 tile_set = SubResource("TileSet_mfdv2")
 
-[node name="PowerSourceBlock" parent="." instance=ExtResource("10_tsauq")]
+[node name="PowerSourceBlock" parent="." instance=ExtResource("8_27m8l")]
 
-[node name="LongWirePowerSource" parent="PowerSourceBlock" instance=ExtResource("11_fjmxi")]
+[node name="LongWirePowerSource" parent="PowerSourceBlock" instance=ExtResource("9_pxh6b")]
 position = Vector2(8, 0)
 rotation = 4.71238
 thisColour = 1
 
 [node name="DraggableObject2" type="Node2D" parent="PowerSourceBlock" node_paths=PackedStringArray("areaForDragDetection", "highlightSprite")]
-script = ExtResource("12_2i53h")
+script = ExtResource("10_yayep")
 dragParent = true
 areaForDragDetection = NodePath("Area2D")
 highlightSprite = NodePath("highlight")
@@ -484,12 +484,12 @@ metadata/_custom_type_script = "uid://kxqhb8pcgjvx"
 [node name="highlight" type="Sprite2D" parent="PowerSourceBlock/DraggableObject2"]
 visible = false
 modulate = Color(1, 1, 1, 0.352941)
-texture = ExtResource("13_im0hx")
+texture = ExtResource("11_0vu6h")
 
 [node name="highlight2" type="Sprite2D" parent="PowerSourceBlock/DraggableObject2/highlight"]
 modulate = Color(1, 1, 1, 0.352941)
 position = Vector2(16, 0)
-texture = ExtResource("13_im0hx")
+texture = ExtResource("11_0vu6h")
 
 [node name="Area2D" type="Area2D" parent="PowerSourceBlock/DraggableObject2"]
 collision_layer = 2
@@ -502,18 +502,18 @@ shape = SubResource("RectangleShape2D_2i53h")
 [node name="Sourceshape2" type="CollisionShape2D" parent="PowerSourceBlock/DraggableObject2/Area2D"]
 shape = SubResource("RectangleShape2D_qih1h")
 
-[node name="powerTerminal2" parent="." node_paths=PackedStringArray("area2ds") instance=ExtResource("12_a5lji")]
+[node name="powerTerminal2" parent="." node_paths=PackedStringArray("area2ds") instance=ExtResource("12_6cdyh")]
 position = Vector2(64, 48)
 area2ds = [NodePath("LongWirePowerSource")]
 
-[node name="LongWirePowerSource" parent="powerTerminal2" instance=ExtResource("11_fjmxi")]
+[node name="LongWirePowerSource" parent="powerTerminal2" instance=ExtResource("9_pxh6b")]
 position = Vector2(-8, 0)
 rotation = 1.57079
 thisColour = 1
 isPowerSource = false
 
 [node name="DraggableObject4" type="Node2D" parent="powerTerminal2" node_paths=PackedStringArray("areaForDragDetection", "highlightSprite")]
-script = ExtResource("12_2i53h")
+script = ExtResource("10_yayep")
 dragParent = true
 areaForDragDetection = NodePath("Area2D")
 highlightSprite = NodePath("dragHighlight")
@@ -522,12 +522,12 @@ metadata/_custom_type_script = "uid://kxqhb8pcgjvx"
 [node name="dragHighlight" type="Sprite2D" parent="powerTerminal2/DraggableObject4"]
 visible = false
 modulate = Color(1, 1, 1, 0.352941)
-texture = ExtResource("13_im0hx")
+texture = ExtResource("11_0vu6h")
 
 [node name="dragHighlight2" type="Sprite2D" parent="powerTerminal2/DraggableObject4/dragHighlight"]
 modulate = Color(1, 1, 1, 0.352941)
 position = Vector2(-16, 0)
-texture = ExtResource("13_im0hx")
+texture = ExtResource("11_0vu6h")
 
 [node name="Area2D" type="Area2D" parent="powerTerminal2/DraggableObject4"]
 collision_layer = 2

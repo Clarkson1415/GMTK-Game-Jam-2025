@@ -14,10 +14,10 @@ var IsPoweredReadonly: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#set_collision_layer_value(2, true)
-	#set_collision_mask_value(2, true)
-	#set_collision_layer_value(1, false)
-	#set_collision_mask_value(1, false)
+	set_collision_layer_value(1, false)
+	set_collision_mask_value(1, false)
+	set_collision_layer_value(4, true)
+	set_collision_mask_value(4, true)
 	#print("Reminder: Setting all wires to layer 2, mask 2. as invisible powerable areas must be connecting the visible and cannot be set in as as this are just a component not a scene.")
 	NAME = self.name
 	PARENT = self.get_parent().name
