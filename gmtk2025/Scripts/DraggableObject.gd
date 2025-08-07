@@ -79,17 +79,6 @@ func _process(_delta: float) -> void:
 	var newPosition = get_global_mouse_position()
 	# Allow to follow but when released it will snap to legal square in grid.
 	getNodeToMove().global_position = newPosition
-	## OLD: this is if want to follow constantly
-	#if await will_collide(newPosition):
-		#print("set to last legal = " + str(lastLegalPosition))
-		#getNodeToMove().global_position = lastLegalPosition
-		## THIS SHOULD ALWAYS BE FALSE:
-		#print("Will collide at lastLegalPosition = " + str(await will_collide(lastLegalPosition)))
-		#return
-	#if dragging:
-		#getNodeToMove().global_position = newPosition
-		#lastLegalPosition = newPosition
-		#print("set to new legal = " + str(newPosition))
 
 func getNodeToMove() -> Node2D:
 	var nodeToDrag = get_parent() if dragParent else self
@@ -128,10 +117,6 @@ func createTransformsToCheck(nextPositionGlobal: Vector2, nextRotationGlobalRads
 	return transformsToCheck
 
 func createATransformToCheck(areasCollisionShape: CollisionShape2D, nextPositionGlobal: Vector2, nextRotationGlobalRads: float) -> Transform2D:
-	#var parent_transform = Transform2D(nextRotationGlobalRads, nextPositionGlobal)
-	#var combined_local_transform = areasCollisionShape.transform
-	#var final_transform = parent_transform * combined_local_transform
-	print("areasCollisionShape.transform: ", areasCollisionShape.transform)
 	var rotated_offset = areasCollisionShape.transform.origin.rotated(nextRotationGlobalRads)
 	var final_position = rotated_offset + nextPositionGlobal
 	var final_rotation = nextRotationGlobalRads + areasCollisionShape.transform.get_rotation()
@@ -145,14 +130,12 @@ func willCollideWithArea(nextPositionGlobal, nextRotationGlobalRads) -> bool:
 	var areaTransformedToNewPosition: Transform2D = Transform2D(nextRotationGlobalRads, nextPositionGlobal)
 	PhysicsServer2D.area_set_transform(areaForDragDetection.get_rid(), areaTransformedToNewPosition)
 	await get_tree().physics_frame
-	# await get_tree().physics_frame
-	# await get_tree().process_frame  # Wait one frame to let physics server update
 	var overlappedAreas = areaForDragDetection.get_overlapping_areas()
 	var overlappedAreaOnMask = overlappedAreas.filter(func(area):
 		return area.collision_layer & areaForDragDetection.collision_mask != 0)
 	var areasInWay = !overlappedAreaOnMask.is_empty()
-	for areas in overlappedAreaOnMask:
-		print("overlapping Area = ", areas.name)
+	#for areas in overlappedAreaOnMask:
+		#print("overlapping Area = ", areas.name)
 	PhysicsServer2D.area_set_transform(areaForDragDetection.get_rid(), Transform2D(previousRotation, previousPos))
 	return areasInWay
 

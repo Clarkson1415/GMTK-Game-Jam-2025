@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://clyn1oqck1kwc"]
+[gd_scene load_steps=31 format=4 uid="uid://clyn1oqck1kwc"]
 
 [ext_resource type="Script" uid="uid://chhker38tu7rl" path="res://GameScenes/LevelInitialiser.gd" id="1_alo2h"]
 [ext_resource type="Texture2D" uid="uid://b8qqlloj53og6" path="res://newart/Bright walls tilemap.png" id="2_bn08d"]
@@ -457,12 +457,6 @@ size = Vector2(0.721844, 3.82308)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_natyy"]
 size = Vector2(13.9329, 3.12045)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xa1yo"]
-size = Vector2(11.3471, 11.8056)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6f8v"]
-size = Vector2(1.08652, 3.02605)
-
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_alo2h")
 
@@ -484,7 +478,7 @@ tile_map_data = PackedByteArray("AAAJAP7/AAAGABAAAAAJAP//AAAGABEAAAAKAP7/AAAHABA
 tile_set = SubResource("TileSet_mfdv2")
 
 [node name="PowerSourceBlock" parent="." instance=ExtResource("8_4sora")]
-position = Vector2(-32, 0)
+position = Vector2(-48, -15.843)
 
 [node name="DraggableObject2" type="Node2D" parent="PowerSourceBlock" node_paths=PackedStringArray("areaForDragDetection", "highlightSprite")]
 script = ExtResource("9_kvods")
@@ -520,7 +514,7 @@ rotation = -1.57079
 thisColour = 1
 
 [node name="powerTerminal2" parent="." node_paths=PackedStringArray("area2ds") instance=ExtResource("12_o45hh")]
-position = Vector2(32, 0)
+position = Vector2(32, -16)
 rotation = 1.57079
 area2ds = [NodePath("LongWirePowerSource"), NodePath("LongWirePowerSource2")]
 
@@ -634,45 +628,19 @@ position = Vector2(16, 40)
 thisColour = 1
 
 [node name="DraggableCableTempl2" parent="." instance=ExtResource("14_jkf6j")]
-position = Vector2(15.6051, -15.843)
+position = Vector2(32, 32)
 
-[node name="HalfPowerableArea" parent="DraggableCableTempl2" instance=ExtResource("15_pjvg5")]
-rotation = 4.71238
-scale = Vector2(-1, 1)
+[node name="HalfPowerableArea" parent="DraggableCableTempl2" instance=ExtResource("16_pjlhn")]
 
-[node name="HalfPowerableArea2" parent="DraggableCableTempl2" instance=ExtResource("15_pjvg5")]
+[node name="HalfPowerableArea2" parent="DraggableCableTempl2" instance=ExtResource("16_pjlhn")]
+position = Vector2(0, -8.07178)
 
 [node name="powerTerminal" parent="." node_paths=PackedStringArray("area2ds") instance=ExtResource("12_o45hh")]
-position = Vector2(-32, 16)
+position = Vector2(64, -16.035)
+rotation = 6.28318
 area2ds = [NodePath("LongWire")]
 
 [node name="LongWire" parent="powerTerminal" instance=ExtResource("11_hqr41")]
-position = Vector2(8, 0)
-rotation = -1.57079
+position = Vector2(-8, 0.156928)
+rotation = 1.57079
 isPowerSource = false
-
-[node name="DraggableObject" type="Node2D" parent="powerTerminal" node_paths=PackedStringArray("areaForDragDetection", "highlightSprite")]
-script = ExtResource("9_kvods")
-dragParent = true
-areaForDragDetection = NodePath("Area2D")
-highlightSprite = NodePath("Sprite2D")
-metadata/_custom_type_script = "uid://kxqhb8pcgjvx"
-
-[node name="Area2D" type="Area2D" parent="powerTerminal/DraggableObject"]
-
-[node name="main" type="CollisionShape2D" parent="powerTerminal/DraggableObject/Area2D"]
-position = Vector2(0.106787, -0.0717783)
-shape = SubResource("RectangleShape2D_xa1yo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="powerTerminal/DraggableObject/Area2D"]
-position = Vector2(21.918, 0.154202)
-shape = SubResource("RectangleShape2D_c6f8v")
-
-[node name="Sprite2D" type="Sprite2D" parent="powerTerminal/DraggableObject"]
-modulate = Color(1, 1, 1, 0.352941)
-texture = ExtResource("10_80cex")
-
-[node name="Sprite2D2" type="Sprite2D" parent="powerTerminal/DraggableObject/Sprite2D"]
-modulate = Color(1, 1, 1, 0.352941)
-position = Vector2(16, -0.0717783)
-texture = ExtResource("10_80cex")

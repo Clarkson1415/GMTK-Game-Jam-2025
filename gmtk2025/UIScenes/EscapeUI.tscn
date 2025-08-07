@@ -1,6 +1,6 @@
-[gd_scene load_steps=26 format=4 uid="uid://bua7rngh5dgrg"]
+[gd_scene load_steps=27 format=4 uid="uid://bua7rngh5dgrg"]
 
-[ext_resource type="Script" uid="uid://c4yvqg7ew2txa" path="res://Scripts/ScaleCanvasToMatchPixelArt.gd" id="1_x66ne"]
+[ext_resource type="Script" uid="uid://c4yvqg7ew2txa" path="res://Scripts/UIController.gd" id="1_x66ne"]
 [ext_resource type="Script" uid="uid://cgkyeuodjxr34" path="res://Scripts/toggle_on_esc.gd" id="2_gw77u"]
 [ext_resource type="Texture2D" uid="uid://rke1qgx10wfv" path="res://newart/Stone walls tilemap.png" id="2_w8c5r"]
 [ext_resource type="Texture2D" uid="uid://cwkfafgly8mj3" path="res://newart/Wall tiles-Sheet.png" id="3_jxcoy"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bbvr8xuaeympm" path="res://UIScenes/LevelButton.tscn" id="7_2nt4w"]
 [ext_resource type="Script" uid="uid://b3ge1oi47068i" path="res://Scripts/QuitButton.gd" id="10_dp7t0"]
 [ext_resource type="Texture2D" uid="uid://cq5up7n6bwn1y" path="res://MyArt/BigButtonUnderline.png" id="13_1llr8"]
+[ext_resource type="Script" uid="uid://du16hmys0fi7u" path="res://UIScenes/CurrentLevelText.gd" id="14_jxcoy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jxcoy"]
 texture = ExtResource("2_w8c5r")
@@ -271,8 +272,26 @@ _data = {
 &"SlideOut": SubResource("Animation_lnk8x")
 }
 
-[node name="EscapeUI" type="CanvasLayer"]
+[node name="EscapeUI" type="CanvasLayer" node_paths=PackedStringArray("levelText")]
 script = ExtResource("1_x66ne")
+levelText = NodePath("levelscreentext/Label")
+
+[node name="levelscreentext" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="levelscreentext"]
+layout_mode = 0
+offset_left = 5.79329
+offset_top = 6.05662
+offset_right = 49.7933
+offset_bottom = 29.0566
+theme_override_fonts/font = ExtResource("4_x66ne")
+theme_override_font_sizes/font_size = 8
+text = "Level 1"
+script = ExtResource("14_jxcoy")
 
 [node name="Control3" type="Control" parent="."]
 layout_mode = 3
